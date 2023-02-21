@@ -1,13 +1,18 @@
 name: publish-common-sdk
 
-on: [push]
+on:
+  push:
+    branches:
+    - main
+    paths:
+    - Project.Sdks/Common
 
 jobs:
   build:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        dotnet-version: ['3.x', '5.x', '7.x' ]
+        dotnet-version: ['7.x' ]
 
     steps:
       - uses: actions/checkout@v3
