@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup Label="Build">
+    <TargetFramework Condition="'$(TargetFramework)'=='' OR '$(TargetFrameworks)'==''">net7</TargetFramework>
+    <PackageOnlyBuild>true</PackageOnlyBuild>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <DevelopmentDependency>true</DevelopmentDependency>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+  </PropertyGroup>
+
+  <PropertyGroup Label="PackageInfo">
+    <PackageTags>MSBuild;MSBuildSdk</PackageTags>
+    <PackageType>MSBuildSdk</PackageType>
+    <Title>Allows for sdk projects to be built and packaged as templates.</Title>
+    <Summary>Lets developers more easily create custom SDKs.</Summary>
+    <Description>An MSBuild SDK package for SDK-style .NET projects that simplifies conforming to requisite structures to generate a dotnet sdk.</Description>
+  </PropertyGroup>
+
+</Project>

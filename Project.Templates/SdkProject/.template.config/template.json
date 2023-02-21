@@ -1,0 +1,13 @@
+{
+    "$schema": "http://json.schemastore.org/template",
+    "author": "Tyler Kendrick",
+    "classifications": [ "Common", "Sdk", "MSBuild" ],
+    "identity": "Sugar.Accelerators.Templates.Sdk",
+    "name": "Sugar Templates: Custom Sdk projects",
+    "shortName": "sdk",
+    "sourceName": "SdkProject",
+    "tags": {
+      "language": "C#",
+      "type": "project"
+    }
+  }

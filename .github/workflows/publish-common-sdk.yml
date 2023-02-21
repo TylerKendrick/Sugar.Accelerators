@@ -1,0 +1,25 @@
+name: publish-common-sdk
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        dotnet-version: ['3.x', '5.x', '7.x' ]
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup .NET Core SDK ${{ matrix.dotnet-version }}
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: ${{ matrix.dotnet-version }}
+      - name: Build
+        run: dotnet build --configuration Release
+        working-directory: Project.Sdks/Common
+      - name: Push
+        run: dotnet nuget push ./bin/Release/*.*nupkg -k $NUGET_AUTH_TOKEN -s https://api.nuget.org/v3/index.json
+        working-directory: Project.Sdks/Common
+        env:
+          NUGET_AUTH_TOKEN: ${{ secrets.NUGET_TOKEN }}
