@@ -1,6 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
-  <Import Project="Sdk.props" Sdk="Sugar.Accelerators.Sdks.Common" />
-  <Import Project="Sdk.targets" Sdk="Sugar.Accelerators.Sdks.Common" />
+<Project Sdk="Sugar.Accelerators.Sdks.Common">
 
   <PropertyGroup Label="PackageInfo">
     <TargetFramework Condition="'$(TargetFramework)'=='' OR '$(TargetFrameworks)'==''">net7</TargetFramework>
