@@ -13,11 +13,11 @@ on:
 
 jobs:
   build:
-    uses: ./build-dotnet.yml
+    uses: ./build-dotnet.yml@main
     with:
       config: 'Release'
       path: $path
   release:
-    uses: ./nuget-release.yml
+    uses: ./nuget-release.yml@main
     secrets: inherit 
     needs: build
