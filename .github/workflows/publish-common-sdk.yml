@@ -14,11 +14,11 @@ on:
 
 jobs:
   build:
-    uses: $workflows/build-dotnet.yml@main
+    uses: ./.github/workflows/build-dotnet.yml@main
     with:
       config: 'Release'
       path: $path
   release:
-    uses: $workflows/nuget-release.yml@main
+    uses: ./.github/workflows/nuget-release.yml@main
     secrets: inherit 
     needs: build
