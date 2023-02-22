@@ -20,9 +20,6 @@ jobs:
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: ${{ matrix.dotnet-version }}
-      - name: install nerdbank
-        run: dotnet tool install -g nbgv
-        working-directory: Project.Sdks/Common
       - name: install version.json
         run: nbgv install
       - name: Build
