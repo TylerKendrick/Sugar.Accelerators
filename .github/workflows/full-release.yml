@@ -42,3 +42,5 @@ jobs:
     uses: ./.github/workflows/nuget-release.yml
     secrets: inherit 
     needs: build
+    with:
+      name: ${{ inputs.name }}

@@ -2,6 +2,10 @@ name: nuget-release
 
 on:
   workflow_call:
+    inputs:
+      name:
+        required: true
+        type: string
     secrets:
       NUGET_TOKEN:
         required: true
