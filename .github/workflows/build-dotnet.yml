@@ -42,5 +42,5 @@ jobs:
         working-directory: ${{ inputs.path }}
       - uses: actions/upload-artifact@v3
         with:
-          name: ${{ join(inputs.path, '/') }}
+          name: $GITHUB_RUN_ID
           path: ./${{ inputs.path }}/bin/${{ inputs.config }}/
