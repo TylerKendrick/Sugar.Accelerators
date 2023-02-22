@@ -1,6 +1,7 @@
 name: publish-common-sdk
 
 on:
+  workflow-dispatch:
   push:
     branches:
       - main
