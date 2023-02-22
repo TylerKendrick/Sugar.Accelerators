@@ -3,7 +3,7 @@ name: publish-common-sdk
 on:
   workflow_call:
     secrets:
-      NugetToken:
+      NUGET_TOKEN:
         required: true
   jobs:
     release:
