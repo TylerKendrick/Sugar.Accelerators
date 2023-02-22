@@ -1,0 +1,15 @@
+name: Project.Sdks.Common
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - Project.Sdks/Common/**/*
+jobs:
+  full-release:
+    uses: ./.github/workflows/full-release.yml
+    secrets: inherit
+    with:
+      path: Project.Sdks/Common
