@@ -36,8 +36,4 @@
     <None Include="version.json" />
   </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Nerdbank.GitVersioning" Version="*" PrivateAssets="all" />
-  </ItemGroup>
-
 </Project>
