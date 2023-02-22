@@ -14,6 +14,8 @@
     <PackageTags>MSBuild;MSBuildSdk</PackageTags>
     <PackageType>MSBuildSdk</PackageType>
     <PackageId>Sugar.Accelerators.Sdks.Common</PackageId>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReadmeFile>docs/README.md</PackageReadmeFile>
     <Title>Allows for sdk projects to be built and packaged as templates.</Title>
     <Summary>Lets developers more easily create custom SDKs.</Summary>
     <Description>An MSBuild SDK package for SDK-style .NET projects that simplifies conforming to requisite structures to generate a dotnet sdk.</Description>

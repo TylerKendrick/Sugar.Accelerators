@@ -24,7 +24,7 @@ jobs:
         run: dotnet build --configuration Release
         working-directory: Project.Sdks/Common
       - name: Push
-        run: dotnet nuget push ./bin/Release/*.*nupkg -k $NUGET_AUTH_TOKEN -s https://api.nuget.org/v3/index.json
+        run: dotnet nuget push ./bin/Release/*.*nupkg -k $NUGET_AUTH_TOKEN -s https://api.nuget.org/v3/index.json --skip-duplicate
         working-directory: Project.Sdks/Common
         env:
           NUGET_AUTH_TOKEN: ${{ secrets.NUGET_TOKEN }}
