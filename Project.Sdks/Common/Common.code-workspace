@@ -1,0 +1,34 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../../.github/workflows/project.sdks.common.yml"
+		},
+		{
+			"path": "../../.github/workflows/build-dotnet.yml"
+		},
+		{
+			"path": "../../.github/workflows/nuget-release.yml"
+		},
+		{
+			"path": "../../.github/workflows/full-release.yml"
+		}
+	],
+	"settings": {
+		"files.exclude": {
+			"**/.git": true,
+			"**/.svn": true,
+			"**/.hg": true,
+			"**/CVS": true,
+			"**/.DS_Store": true,
+			"**/Thumbs.db": true,
+			"**/*.crswap": true,
+			"**/version.json": true,
+			".docs/*": true,
+			"bin/*": true,
+			"obj/*": true,
+		}
+	}
+}

@@ -4,6 +4,6 @@
   },
   "msbuild-sdks": {
     "Microsoft.Build.Traversal": "3.2.0",
-    "Sugar.Accelerators.Sdks.Common": "1.0.17-beta-g74ac72a1f1"
+    "Sugar.Accelerators.Sdks.Common": "1.0.42-beta-g413c8c1dca"
   }
 }
