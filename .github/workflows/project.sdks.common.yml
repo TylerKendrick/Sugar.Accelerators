@@ -13,3 +13,4 @@ jobs:
     secrets: inherit
     with:
       path: Project.Sdks/Common
+      name: 'Sugar.Accelerators.Sdks.Common'

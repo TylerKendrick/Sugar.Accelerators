@@ -3,6 +3,9 @@ name: build-dotnet
 on:
   workflow_dispatch:
     inputs:
+      name:
+        required: true
+        type: string
       config:
         required: false
         default: 'Debug'
@@ -12,6 +15,9 @@ on:
         type: string
   workflow_call:
     inputs:
+      name:
+        required: true
+        type: string
       config:
         required: false
         default: 'Debug'
@@ -42,5 +48,5 @@ jobs:
         working-directory: ${{ inputs.path }}
       - uses: actions/upload-artifact@v3
         with:
-          name: $GITHUB_RUN_ID
+          name: ${{ inputs.name }}
           path: ./${{ inputs.path }}/bin/${{ inputs.config }}/

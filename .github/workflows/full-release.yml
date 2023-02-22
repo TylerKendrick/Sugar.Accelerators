@@ -3,6 +3,9 @@ name: full-release
 on:
   workflow_dispatch:
     inputs:
+      name:
+        required: true
+        type: string
       config:
         required: false
         default: 'Release'
@@ -15,6 +18,9 @@ on:
         required: true
   workflow_call:
     inputs:
+      name:
+        required: true
+        type: string
       config:
         required: false
         default: 'Release'
@@ -29,6 +35,7 @@ jobs:
   build:
     uses: ./.github/workflows/build-dotnet.yml
     with:
+      name: ${{ inputs.name }}
       config: ${{ inputs.config }}
       path: ${{ inputs.path }}
   release:
