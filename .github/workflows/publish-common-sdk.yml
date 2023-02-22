@@ -24,7 +24,7 @@ jobs:
           dotnet-version: ${{ matrix.dotnet-version }}
       - uses: dotnet/nbgv@master
         id: nbgv
-        run: echo 'SemVer2=${{ steps.nbgv.outputs.SemVer2 }}'
+      - run: echo 'SemVer2=${{ steps.nbgv.outputs.SemVer2 }}'
       - name: Build
         run: dotnet build --configuration Release
         working-directory: Project.Sdks/Common
