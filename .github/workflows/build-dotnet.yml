@@ -2,6 +2,14 @@ name: build-dotnet
 
 on:
   workflow_dispatch:
+    inputs:
+      config:
+        required: false
+        default: 'Debug'
+        type: string
+      path:
+        required: true
+        type: string
   workflow_call:
     inputs:
       config:
