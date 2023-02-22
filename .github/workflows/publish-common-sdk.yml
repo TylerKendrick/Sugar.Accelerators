@@ -14,10 +14,10 @@ on:
 jobs:
   build:
     uses: ./build-dotnet.yml
-      with:
-        config: 'Release'
-        path: $path
+    with:
+      config: 'Release'
+      path: $path
   release:
     uses: ./nuget-release.yml
-      secrets: inherit 
+    secrets: inherit 
     needs: build
