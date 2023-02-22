@@ -2,7 +2,6 @@ name: publish-common-sdk
 
 env:
   path: Project.Sdks/Common
-  workflows: ./.github/workflows
 
 on:
   workflow_dispatch:
@@ -14,11 +13,11 @@ on:
 
 jobs:
   build:
-    uses: ./.github/workflows/build-dotnet.yml@main
+    uses: ./.github/workflows/build-dotnet.yml
     with:
       config: 'Release'
       path: $path
   release:
-    uses: ./.github/workflows/nuget-release.yml@main
+    uses: ./.github/workflows/nuget-release.yml
     secrets: inherit 
     needs: build
