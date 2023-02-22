@@ -1,7 +1,6 @@
 <Project Sdk="Sugar.Accelerators.Sdks.Common">
 
   <PropertyGroup Label="PackageInfo">
-    <TargetFramework Condition="'$(TargetFramework)'=='' OR '$(TargetFrameworks)'==''">net7</TargetFramework>
     <PackageId>Sugar.Accelerators.Sdks.SdkProject</PackageId>
   </PropertyGroup>
 
