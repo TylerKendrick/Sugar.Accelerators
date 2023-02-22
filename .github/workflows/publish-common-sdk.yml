@@ -1,6 +1,11 @@
 name: publish-common-sdk
 
-on: [push]
+on:
+  push:
+    branches:
+    - main
+    paths:
+    - Project.Sdks/Common
 
 jobs:
   build:
