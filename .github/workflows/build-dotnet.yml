@@ -43,4 +43,4 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: ${{ inputs.path }}
-          path: ./bin/${{ inputs.config }}/
+          path: ./${{ inputs.path }}/bin/${{ inputs.config }}/
