@@ -42,5 +42,5 @@ jobs:
         working-directory: ${{ inputs.path }}
       - uses: actions/upload-artifact@v3
         with:
-          name: ${{ inputs.path }}
+          name: ${{ join(inputs.path, '/') }}
           path: ./${{ inputs.path }}/bin/${{ inputs.config }}/
