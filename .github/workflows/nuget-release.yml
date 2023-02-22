@@ -1,4 +1,4 @@
-name: publish-common-sdk
+name: nuget-release
 
 on:
   workflow_call:
