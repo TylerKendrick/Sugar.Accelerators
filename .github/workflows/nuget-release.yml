@@ -1,0 +1,19 @@
+name: publish-common-sdk
+
+on:
+  workflow_call:
+    secrets:
+      NugetToken:
+        required: true
+  jobs:
+    release:
+      runs-on: ubuntu-latest
+      environment: production
+      steps:
+        - uses: actions/download-artifact@v3
+        - name: Display structure of downloaded files
+          run: ls -R
+        - name: Push
+          run: dotnet nuget push ./*.*nupkg -k $NUGET_AUTH_TOKEN -s https://api.nuget.org/v3/index.json --skip-duplicate
+          env:
+            NUGET_AUTH_TOKEN: ${{ secrets.NUGET_TOKEN }}

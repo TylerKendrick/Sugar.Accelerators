@@ -1,36 +1,23 @@
 name: publish-common-sdk
 
+env:
+  path: Project.Sdks/Common
+
 on:
   workflow_dispatch:
   push:
     branches:
       - main
     paths:
-      - Project.Sdks/Common/**/*
+      - $path/**/*
 
 jobs:
   build:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        dotnet-version: [ '7.x' ]
-
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-      - name: Setup .NET Core SDK ${{ matrix.dotnet-version }}
-        uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: ${{ matrix.dotnet-version }}
-      - uses: dotnet/nbgv@master
-        id: nbgv
-      - run: echo 'SemVer2=${{ steps.nbgv.outputs.SemVer2 }}'
-      - name: Build
-        run: dotnet build --configuration Release
-        working-directory: Project.Sdks/Common
-      - name: Push
-        run: dotnet nuget push ./bin/Release/*.*nupkg -k $NUGET_AUTH_TOKEN -s https://api.nuget.org/v3/index.json --skip-duplicate
-        working-directory: Project.Sdks/Common
-        env:
-          NUGET_AUTH_TOKEN: ${{ secrets.NUGET_TOKEN }}
+    uses: ./build-dotnet.yml
+      with:
+        config: 'Release'
+        path: $path
+  release:
+    uses: ./nuget-release.yml
+      secrets: inherit 
+    needs: build
