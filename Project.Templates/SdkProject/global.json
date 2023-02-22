@@ -1,0 +1,8 @@
+{
+  "sdk": {
+    "version": "7.0.200"
+  },
+  "msbuild-sdks": {
+    "Sugar.Accelerators.Sdks.Common": "1.0.0"
+  }
+}

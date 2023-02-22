@@ -8,9 +8,12 @@
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <IsPackable>true</IsPackable>
   </PropertyGroup>
 
   <PropertyGroup Label="PackageInfo">
+    <Authors>Tyler Kendrick</Authors>
+    <Copyright>© Tyler Kendrick. All rights reserved.</Copyright>
     <PackageTags>MSBuild;MSBuildSdk</PackageTags>
     <PackageType>MSBuildSdk</PackageType>
     <PackageId>Sugar.Accelerators.Sdks.Common</PackageId>
@@ -22,7 +25,19 @@
   </PropertyGroup>
 
   <ItemGroup>
-      <None Include="docs\README.md" Pack="true" PackagePath="\"/>
+    <None Include="docs\README.md" Pack="true" PackagePath="\"/>
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(IsPackable)' == 'true'">
+    <None Include="Sdk\**"
+          Pack="true"
+          PackagePath="Sdk\" />
+    <None Include="README.md" />
+    <None Include="version.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Nerdbank.GitVersioning" Version="*" PrivateAssets="all" />
   </ItemGroup>
 
 </Project>
