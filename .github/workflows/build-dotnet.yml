@@ -7,10 +7,7 @@ on:
       config:
         required: false
         default: 'Debug'
-        type: choice
-        options:
-        - Debug
-        - Release
+        type: string
       path:
         required: true
         type: string
