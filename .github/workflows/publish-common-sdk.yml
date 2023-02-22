@@ -3,9 +3,9 @@ name: publish-common-sdk
 on:
   push:
     branches:
-    - main
+      - main
     paths:
-    - Project.Sdks/Common
+      - Project.Sdks/Common/*
 
 jobs:
   build:
