@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - Project.Sdks/Common/*
+      - Project.Sdks/Common/**/*
 
 jobs:
   build:
