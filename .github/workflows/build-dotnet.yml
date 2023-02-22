@@ -8,8 +8,8 @@ on:
         default: 'Debug'
         type: choice
         options:
-          - Debug
-          - Release
+        - Debug
+        - Release
       path:
         required: true
         type: string
