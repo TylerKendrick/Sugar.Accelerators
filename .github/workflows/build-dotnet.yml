@@ -13,28 +13,28 @@ on:
       path:
         required: true
         type: string
-  jobs:
-    build:
-      runs-on: ubuntu-latest
-      strategy:
-        matrix:
-          dotnet-version: [ '7.x' ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        dotnet-version: [ '7.x' ]
 
-      steps:
-        - uses: actions/checkout@v3
-          with:
-            fetch-depth: 0
-        - name: Setup .NET Core SDK ${{ matrix.dotnet-version }}
-          uses: actions/setup-dotnet@v3
-          with:
-            dotnet-version: ${{ matrix.dotnet-version }}
-        - uses: dotnet/nbgv@master
-          id: nbgv
-        - run: echo 'SemVer2=${{ steps.nbgv.outputs.SemVer2 }}'
-        - name: Build
-          run: dotnet build -c ${{ inputs.config }}
-          working-directory: ${{ inputs.path }}
-        - uses: actions/upload-artifact@v3
-          with:
-            name: ${{ inputs.path }}
-            path: ./bin/${{ inputs.config }}/
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Setup .NET Core SDK ${{ matrix.dotnet-version }}
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: ${{ matrix.dotnet-version }}
+      - uses: dotnet/nbgv@master
+        id: nbgv
+      - run: echo 'SemVer2=${{ steps.nbgv.outputs.SemVer2 }}'
+      - name: Build
+        run: dotnet build -c ${{ inputs.config }}
+        working-directory: ${{ inputs.path }}
+      - uses: actions/upload-artifact@v3
+        with:
+          name: ${{ inputs.path }}
+          path: ./bin/${{ inputs.config }}/

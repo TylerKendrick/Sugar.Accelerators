@@ -10,7 +10,6 @@ on:
       - main
     paths:
       - $path/**/*
-
 jobs:
   build:
     uses: ./.github/workflows/build-dotnet.yml
