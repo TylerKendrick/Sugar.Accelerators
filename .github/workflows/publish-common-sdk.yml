@@ -16,12 +16,15 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # avoid shallow clone so nbgv can do its work.
       - name: Setup .NET Core SDK ${{ matrix.dotnet-version }}
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: ${{ matrix.dotnet-version }}
-      - name: install version.json
-        run: nbgv install
+      - uses: dotnet/nbgv@master
+        id: nbgv
+        run: echo 'SemVer2=${{ steps.nbgv.outputs.SemVer2 }}'
       - name: Build
         run: dotnet build --configuration Release
         working-directory: Project.Sdks/Common
