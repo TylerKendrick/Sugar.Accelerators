@@ -1,4 +1,4 @@
-﻿namespace Project.Abstractions;
+﻿namespace AbstractionsProject.Abstractions;
 
 public interface IService
 {

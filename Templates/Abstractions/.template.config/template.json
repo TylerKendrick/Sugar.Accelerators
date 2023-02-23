@@ -5,7 +5,7 @@
     "identity": "Sugar.Accelerators.Templates.Abstractions",
     "name": "Sugar Templates: Service Abstractions projects",
     "shortName": "sugar-abstractions",
-    "sourceName": "Project",
+    "sourceName": "AbstractionsProject",
     "tags": {
       "language": "C#",
       "type": "project"
