@@ -2,8 +2,11 @@
 
   <PropertyGroup Label="Build">
     <TargetFramework Condition="'$(TargetFramework)'=='' OR '$(TargetFrameworks)'==''">net7</TargetFramework>
-    <LangVersion>latest</LangVersion>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <CodeAnalysisTreatWarningsAsErrors>false</CodeAnalysisTreatWarningsAsErrors>
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+    <LangVersion>latest</LangVersion>
     <PackageOnlyBuild>true</PackageOnlyBuild>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <DevelopmentDependency>true</DevelopmentDependency>
@@ -43,13 +46,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <!-- <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="*" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="*" />
-    <PackageReference Include="Microsoft.Extensions.Localization.Abstractions" Version="*" />
-    <PackageReference Include="Microsoft.Extensions.Options" Version="*" /> -->
-    <PackageReference Include="Microsoft.Toolkit.Diagnostics" Version="*" />
     <PackageReference Include="DefaultDocumentation" Version="*" PrivateAssets="all"/>
-    <Using Include="Microsoft.Toolkit.Diagnostics" />
   </ItemGroup>
 
   <ItemGroup Label="Pack Files">

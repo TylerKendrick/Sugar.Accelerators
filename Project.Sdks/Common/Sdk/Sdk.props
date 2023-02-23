@@ -2,16 +2,49 @@
 
   <Import Project="Sdk.props" Sdk="Microsoft.NET.Sdk"/>
   
-  <PropertyGroup>
-    <TargetFramework Condition="'$(TargetFramework)'=='' OR '$(TargetFrameworks)'==''">net7</TargetFramework>
+  <PropertyGroup Label="Common Properties">
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <CodeAnalysisTreatWarningsAsErrors>false</CodeAnalysisTreatWarningsAsErrors>
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
   </PropertyGroup>
 
+  <PropertyGroup Label="Build">
+    <TargetFramework Condition="'$(TargetFramework)'=='' OR '$(TargetFrameworks)'==''">net7</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <PackageOnlyBuild>true</PackageOnlyBuild>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <DevelopmentDependency>true</DevelopmentDependency>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <IsPackable>true</IsPackable>
+  </PropertyGroup>
+
+  <PropertyGroup Label="PackageInfo">
+    <PackageTags>MSBuild;MSBuildSdk</PackageTags>
+    <PackageType>MSBuildSdk</PackageType>
+    <PackageId>Sugar.Accelerators.Sdks.$(MSBuildProjectName)</PackageId>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <Title>Allows for sdk projects to be built and packaged as templates.</Title>
+    <Summary>Lets developers more easily create custom SDKs.</Summary>
+    <Description>An MSBuild SDK package for SDK-style .NET projects that simplifies conforming to requisite structures to generate a dotnet sdk.</Description>
+  </PropertyGroup>
+  
+  <PropertyGroup Label="Documentation">
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <DocumentationFile>./.docs/ref.xml</DocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup>
-    <InternalsVisibleTo Include="Tests" />
+    <InternalsVisibleTo Include="$(MSBuildProjectName).Tests" />
+  </ItemGroup>
+  
+  <ItemGroup Label="Pack Files">
+    <None Include="docs\README.md" Pack="true" PackagePath="\" PackageCopyToOutput="True" />
+    <None Include="Sdk\**" Pack="true" PackagePath="Sdk\" PackageCopyToOutput="True" />
+    <None Include="version.json" />
   </ItemGroup>
 
   <ItemGroup>
@@ -20,11 +53,5 @@
     <PackageReference Include="DefaultDocumentation" Version="*" PrivateAssets="all"/>
     <Using Include="Microsoft.Toolkit.Diagnostics" />
   </ItemGroup>
-
-  <PropertyGroup>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <DocumentationFile>./.docs/ref.xml</DocumentationFile>
-    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
-  </PropertyGroup>
 
 </Project>

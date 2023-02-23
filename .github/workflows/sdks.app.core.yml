@@ -1,4 +1,4 @@
-name: Project.Sdks.Common
+name: Sdks.App.Core
 
 on:
   workflow_dispatch:
@@ -6,11 +6,11 @@ on:
     branches:
       - main
     paths:
-      - Project.Sdks/Common/**/*
+      - Sdks/App.Core/**/*
 jobs:
   full-release:
     uses: ./.github/workflows/full-release.yml
     secrets: inherit
     with:
-      path: Project.Sdks/Common
-      name: 'Sugar.Accelerators.Sdks.Common'
+      path: Sdks/App.Core
+      name: 'Sugar.Accelerators.Sdks.App.Core'

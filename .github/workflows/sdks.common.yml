@@ -1,0 +1,16 @@
+name: Sdks.Common
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - Sdks/Common/**/*
+jobs:
+  full-release:
+    uses: ./.github/workflows/full-release.yml
+    secrets: inherit
+    with:
+      path: Sdks/Common
+      name: 'Sugar.Accelerators.Sdks.Common'

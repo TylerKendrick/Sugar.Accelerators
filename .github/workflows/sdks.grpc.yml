@@ -1,0 +1,16 @@
+name: Sdks.Grpc
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - Sdks/Grpc/**/*
+jobs:
+  full-release:
+    uses: ./.github/workflows/full-release.yml
+    secrets: inherit
+    with:
+      path: Sdks/Grpc
+      name: 'Sugar.Accelerators.Sdks.Grpc'
