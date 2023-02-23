@@ -1,0 +1,21 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <Import Project="Sdk.props" Sdk="Sugar.Accelerators.Sdks.Common"/>
+
+  <ItemGroup Label="Packages">
+    <PackageReference Include="Google.Protobuf" Version="*" />
+    <PackageReference Include="Google.Protobuf.Tools" Version="*">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Grpc.Tools" Version="*">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup Label="File generators">
+    <Protobuf Include="**\*.proto" />
+  </ItemGroup>
+
+</Project>

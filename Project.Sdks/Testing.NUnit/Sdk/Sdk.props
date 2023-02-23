@@ -1,0 +1,16 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <Import Project="Sdk.props" Sdk="Sugar.Accelerators.Sdks.Common"/>
+
+  <ItemGroup Label="Packages">
+    <PackageReference Include="NUnit" Version="*" />
+    <PackageReference Include="NUnit.Analyzers" Version="*" PrivateAssets="All" />
+    <PackageReference Include="NUnit3TestAdapter" Version="*" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="*" PrivateAssets="All" />
+    <PackageReference Include="Moq" Version="*" />
+    <PackageReference Include="coverlet.collector" Version="*" />
+    <Using Include="NUnit.Framework" />
+    <Using Include="Moq" />
+  </ItemGroup>
+
+</Project>

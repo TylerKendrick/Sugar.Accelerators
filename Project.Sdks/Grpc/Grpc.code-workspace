@@ -2,15 +2,6 @@
 	"folders": [
 		{
 			"path": "."
-		},
-		{
-			"path": "../../.github/workflows/build-dotnet.yml"
-		},
-		{
-			"path": "../../.github/workflows/nuget-release.yml"
-		},
-		{
-			"path": "../../.github/workflows/full-release.yml"
 		}
 	],
 	"settings": {
@@ -22,7 +13,6 @@
 			"**/.DS_Store": true,
 			"**/Thumbs.db": true,
 			"**/*.crswap": true,
-			"**/version.json": true,
 			".docs/*": true,
 			"bin/*": true,
 			"obj/*": true,
