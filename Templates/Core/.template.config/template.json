@@ -5,7 +5,7 @@
     "identity": "Sugar.Accelerators.Templates.Core",
     "name": "Sugar Templates: Custom projects",
     "shortName": "sugar-lib",
-    "sourceName": "Project",
+    "sourceName": "CoreProject",
     "tags": {
       "language": "C#",
       "type": "project"

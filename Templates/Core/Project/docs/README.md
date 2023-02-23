@@ -1,3 +1,3 @@
-# Sugar.Accelerators.Project
+# Sugar.Accelerators.CoreProject
 
-This package provides a base solution to use when creating class libraries.
+This package provides a base project to use when creating class libraries.
