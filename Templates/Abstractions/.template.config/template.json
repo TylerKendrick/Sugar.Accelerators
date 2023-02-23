@@ -1,0 +1,13 @@
+{
+    "$schema": "http://json.schemastore.org/template",
+    "author": "Tyler Kendrick",
+    "classifications": [ "Common", "Abstractions", "Service" ],
+    "identity": "Sugar.Accelerators.Templates.Abstractions",
+    "name": "Sugar Templates: Service Abstractions projects",
+    "shortName": "sugar-abstractions",
+    "sourceName": "Project",
+    "tags": {
+      "language": "C#",
+      "type": "project"
+    }
+  }

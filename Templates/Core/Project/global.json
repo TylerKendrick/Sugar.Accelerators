@@ -1,9 +1,10 @@
 {
   "sdk": {
-    "version": "7.0.200"
+    "version": "7.0.200",
+    "allowPrerelease": true,
+    "rollForward": "latestFeature"
   },
   "msbuild-sdks": {
-    "Microsoft.Build.Traversal": "3.2.0",
     "Sugar.Accelerators.Sdks.Common": "1.0.2-beta-g1e9fb8a5af"
   }
 }

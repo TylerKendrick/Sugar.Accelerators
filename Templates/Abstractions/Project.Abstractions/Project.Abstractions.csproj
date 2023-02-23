@@ -1,0 +1,8 @@
+<Project Sdk="Sugar.Accelerators.Sdks.Common">
+
+  <ItemGroup>
+    <ProjectReference Include="../Project.Serialization/Project.Serialization.csproj" />
+    <Using Include="Project.Serialization" />
+  </ItemGroup>
+
+</Project>

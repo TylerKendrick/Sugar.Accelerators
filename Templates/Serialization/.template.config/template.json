@@ -1,0 +1,13 @@
+{
+    "$schema": "http://json.schemastore.org/template",
+    "author": "Tyler Kendrick",
+    "classifications": [ "Common", "Serialization", "Grpc" ],
+    "identity": "Sugar.Accelerators.Templates.Serialization",
+    "name": "Sugar Templates: Custom Grpc projects",
+    "shortName": "grpc",
+    "sourceName": "Project",
+    "tags": {
+      "language": "C#",
+      "type": "project"
+    }
+  }
