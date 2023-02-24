@@ -1,0 +1,16 @@
+name: Core.Testing.NUnit
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - Core/Testing.NUnit/**/*
+jobs:
+  full-release:
+    uses: ./.github/workflows/full-release.yml
+    secrets: inherit
+    with:
+      path: Core/Testing.NUnit
+      name: 'Sugar.Accelerators.Core.Testing.NUnit'

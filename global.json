@@ -7,6 +7,7 @@
   "msbuild-sdks": {
     "Sugar.Accelerators.Sdks.Common": "1.0.2-beta-g1e9fb8a5af",
     "Sugar.Accelerators.Sdks.Grpc": "1.0.3-beta-ga3991eafa3",
-    "Sugar.Accelerators.Sdks.App.Core": "1.0.3-beta-ga3991eafa3"
+    "Sugar.Accelerators.Sdks.App.Core": "1.0.3-beta-ga3991eafa3",
+    "Sugar.Accelerators.Sdks.Testing.NUnit": "1.0.3-beta-ga3991eafa3"
   }
 }
