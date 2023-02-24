@@ -1,4 +1,4 @@
-<Project Sdk="Sugar.Accelerators.Sdks.Common">
+<Project Sdk="Sugar.Accelerators.Sdks.App.Core">
 
   <ItemGroup>
     <ProjectReference Include="../ApplicationProject.Abstractions/ApplicationProject.Abstractions.csproj" />

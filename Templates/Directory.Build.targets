@@ -20,5 +20,4 @@
     <Target Name="Pre-Restore" BeforeTargets="_GenerateRestoreProjectPathWalk">
         <Message Importance="high" Text="Pre-restore" />
     </Target>
-
 </Project>
