@@ -1,9 +1,16 @@
 <Project InitialTargets="Log Targets" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-    <Target Name="refresh-abstractions-serialization"
+    <Target Name="refresh-sugar-abstractions"
         Condition="'$(MSBuildProjectName)'=='AbstractionsProject.Abstractions'"
         BeforeTargets="_GenerateRestoreProjectPathWalk">
         <Message Importance="high" Text="Generating Serialization Project" />
         <Exec Command="dotnet new sugar-grpc -n AbstractionsProject --force"  WorkingDirectory="../" />
+        <Message Importance="high" Text="Serialization Project Created" />
+    </Target>    
+    <Target Name="refresh-sugar-application"
+        Condition="'$(MSBuildProjectName)'=='ApplicationProject.Application'"
+        BeforeTargets="_GenerateRestoreProjectPathWalk">
+        <Message Importance="high" Text="Generating Serialization Project" />
+        <Exec Command="dotnet new sugar-abstractions -n ApplicationProject --force"  WorkingDirectory="../" />
         <Message Importance="high" Text="Serialization Project Created" />
     </Target>
 
