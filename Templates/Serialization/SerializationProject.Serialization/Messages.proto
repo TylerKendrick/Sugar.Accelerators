@@ -1,6 +1,6 @@
 syntax = "proto3";
-package Project.Serialization;
-option csharp_namespace = "Project.Serialization";
+package SerializationProject.Serialization;
+option csharp_namespace = "SerializationProject.Serialization";
 
 import "google/protobuf/timestamp.proto";
 

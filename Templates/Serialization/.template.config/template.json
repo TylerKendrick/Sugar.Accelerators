@@ -4,8 +4,8 @@
     "classifications": [ "Common", "Serialization", "Grpc" ],
     "identity": "Sugar.Accelerators.Templates.Serialization",
     "name": "Sugar Templates: Custom Grpc projects",
-    "shortName": "grpc",
-    "sourceName": "Project",
+    "shortName": "sugar-grpc",
+    "sourceName": "SerializationProject",
     "tags": {
       "language": "C#",
       "type": "project"

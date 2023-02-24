@@ -1,0 +1,17 @@
+<Project InitialTargets="Log Targets" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <Target Name="refresh-abstractions-serialization"
+        Condition="'$(MSBuildProjectName)'=='AbstractionsProject.Abstractions'"
+        BeforeTargets="_GenerateRestoreProjectPathWalk">
+        <Message Importance="high" Text="Generating Serialization Project" />
+        <Exec Command="dotnet new sugar-grpc -n AbstractionsProject --force"  WorkingDirectory="../" />
+        <Message Importance="high" Text="Serialization Project Created" />
+    </Target>
+
+    <Target Name="Log Targets">
+        <Message Importance="high" Text="Targetting new target." />
+    </Target>
+    <Target Name="Pre-Restore" BeforeTargets="_GenerateRestoreProjectPathWalk">
+        <Message Importance="high" Text="Pre-restore" />
+    </Target>
+
+</Project>

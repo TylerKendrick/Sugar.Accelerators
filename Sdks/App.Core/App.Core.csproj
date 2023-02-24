@@ -1,7 +1,3 @@
 <Project Sdk="Sugar.Accelerators.Sdks.Common">
 
-  <PropertyGroup Label="PackageInfo">
-    <PackageId>Sugar.Accelerators.Sdks.App.Core</PackageId>
-  </PropertyGroup>
-
 </Project>
