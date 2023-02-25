@@ -1,5 +1,4 @@
 <Project Sdk="Sugar.Accelerators.Sdks.Common">
-
     <ItemGroup>
         <PackageReference Include="Sugar.Core.Testing.NUnit" Version="*-*" />
     </ItemGroup>

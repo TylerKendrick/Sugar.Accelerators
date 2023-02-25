@@ -1,0 +1,27 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"files.exclude": {
+			"**/.git": true,
+			"**/.svn": true,
+			"**/.hg": true,
+			"**/CVS": true,
+			"**/.DS_Store": true,
+			"**/Thumbs.db": true,
+			"**/*.crswap": true,
+			"**/bin": true,
+			"**/obj": true,
+			"**/.docs": true,
+			"**/.vscode": true,
+			"**/*.code-workspace": true,
+			"**/global.json": true
+		}
+	},
+	"extensions": {
+		"recommendations": ["ms-dotnettools.csharp"]
+	}
+}

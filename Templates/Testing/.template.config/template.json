@@ -1,0 +1,13 @@
+{
+    "$schema": "http://json.schemastore.org/template",
+    "author": "Tyler Kendrick",
+    "classifications": [ "Common", "Testing", "NUnit" ],
+    "identity": "Sugar.Accelerators.Templates.Testing.NUnit",
+    "name": "Sugar Templates: Custom NUnit testing projects",
+    "shortName": "sugar-testing-nunit",
+    "sourceName": "TestingProject",
+    "tags": {
+      "language": "C#",
+      "type": "project"
+    }
+  }
