@@ -13,4 +13,4 @@ jobs:
     secrets: inherit
     with:
       path: Core/Testing.NUnit
-      name: 'Sugar.Accelerators.Core.Testing.NUnit'
+      name: 'Sugar.Core.Testing.NUnit'

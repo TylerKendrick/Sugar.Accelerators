@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Moq.Language.Flow;
 using System.Reflection;
 
-namespace Sugar.Accelerators.Core.Testing.NUnit;
+namespace Sugar.Core.Testing.NUnit;
 
 /// <summary>
 /// A generic test fixture base class for configuring dependencies and setting up mocks.
