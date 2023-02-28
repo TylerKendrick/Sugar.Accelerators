@@ -1,0 +1,6 @@
+<Project Sdk="Sugar.Accelerators.Sdks.Testing.NUnit">
+    <ItemGroup>
+        <ProjectReference Include="../../Generators/Testing.NUnit.TestDoubles/Testing.NUnit.TestDoubles.csproj"
+            OutputItemType="Analyzer" ReferenceOutputAssembly="true"/>
+    </ItemGroup>
+</Project>
