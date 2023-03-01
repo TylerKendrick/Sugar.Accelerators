@@ -19,6 +19,7 @@
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <IsPackable>true</IsPackable>
+		<NoPackageAnalysis>true</NoPackageAnalysis>
   </PropertyGroup>
 
   <PropertyGroup Label="PackageInfo">
@@ -35,6 +36,7 @@
   <PropertyGroup Label="Documentation">
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <DocumentationFile>./.docs/ref.xml</DocumentationFile>
+    <DefaultDocumentationLogLevel>Off</DefaultDocumentationLogLevel>
   </PropertyGroup>
 
   <ItemGroup>

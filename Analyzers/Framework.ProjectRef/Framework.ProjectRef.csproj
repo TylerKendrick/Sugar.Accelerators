@@ -1,0 +1,17 @@
+<Project Sdk="Sugar.Accelerators.Sdks.Common">
+    <PropertyGroup>
+        <DefaultDocumentationLogLevel>Off</DefaultDocumentationLogLevel>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <RootNamespace>Sugar.Accelerators.Analyzers</RootNamespace>
+		<NoPackageAnalysis>true</NoPackageAnalysis>
+        <IsShippingPackage>false</IsShippingPackage>
+        <_SkipUpgradeNetAnalyzersNuGetWarning>true</_SkipUpgradeNetAnalyzersNuGetWarning>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="*" PrivateAssets="all" />
+        <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="*" />
+        <PackageReference Include="Microsoft.CodeAnalysis.Common" Version="*" />
+    </ItemGroup>
+
+</Project>
