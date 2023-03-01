@@ -1,0 +1,14 @@
+<Project Sdk="Sugar.Accelerators.Sdks.Common">
+  <PropertyGroup>
+    <PackageType>Template</PackageType>
+    <IncludeContentInPack>true</IncludeContentInPack>
+		<ContentTargetFolders>content</ContentTargetFolders>
+		<IncludeBuildOutput>false</IncludeBuildOutput>
+		<NoPackageAnalysis>true</NoPackageAnalysis>
+  </PropertyGroup>
+  <ItemGroup>
+		<Directory Include="TemplateProject\.template.config" />
+		<Content Include="TemplateProject\.template.config/**/*.*" />
+		<Compile Remove="TemplateProject\.template.config/**/*.cs" />
+  </ItemGroup>
+</Project>

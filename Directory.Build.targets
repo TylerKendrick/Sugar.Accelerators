@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <!-- <Target Name="install-templates"
+      BeforeTargets="_GenerateRestoreProjectPathWalk">
+      <Message Importance="high" Text="installing templates" />
+      <Exec Command="dotnet new install ./"  WorkingDirectory="/Templates/Core" />
+      <Exec Command="dotnet new install ./"  WorkingDirectory="/Templates/SdkProject" />
+      <Exec Command="dotnet new install ./"  WorkingDirectory="/Templates/Serialization" />
+      <Exec Command="dotnet new install ./"  WorkingDirectory="/Templates/Abstractions" />
+      <Exec Command="dotnet new install ./"  WorkingDirectory="/Templates/Application" />
+      <Exec Command="dotnet new install ./"  WorkingDirectory="/Templates/Testing" />
+      <Message Importance="high" Text="templates installed" />
+  </Target>   -->
+
+</Project>
