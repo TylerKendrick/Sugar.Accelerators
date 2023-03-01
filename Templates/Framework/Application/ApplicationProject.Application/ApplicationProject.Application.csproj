@@ -1,4 +1,7 @@
 <Project Sdk="Sugar.Accelerators.Sdks.App.Core">
+  <PropertyGroup>
+    <DefaultDocumentationLogLevel>Off</DefaultDocumentationLogLevel>
+  </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="../ApplicationProject.Abstractions/ApplicationProject.Abstractions.csproj" />

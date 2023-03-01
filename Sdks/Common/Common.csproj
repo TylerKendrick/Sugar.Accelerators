@@ -19,6 +19,7 @@
   <PropertyGroup Label="Documentation">
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <DocumentationFile>./.docs/ref.xml</DocumentationFile>
+    <DefaultDocumentationLogLevel>Off</DefaultDocumentationLogLevel>
   </PropertyGroup>
 
   <PropertyGroup Label="PackageInfo">

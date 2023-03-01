@@ -1,11 +1,18 @@
 ﻿<Project Sdk="Sugar.Accelerators.Sdks.App.Host">
 
-  <PropertyGroup>  
+  <PropertyGroup>
+    <DefaultDocumentationLogLevel>Off</DefaultDocumentationLogLevel>
     <UserSecretsId>f370f9fb-61d9-4c79-89ab-d8be60825356</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="../HostProject.Abstractions/HostProject.Application.csproj" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="*" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="*" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Configuration" Version="*" />
+    <PackageReference Include="Microsoft.Extensions.Localization" Version="*" />
+    <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks" Version="*" />
+    <PackageReference Include="Microsoft.Identity.Client" Version="*" />
+    <ProjectReference Include="../HostProject.Application/HostProject.Application.csproj" />
     <Using Include="HostProject.Serialization" />
     <Using Include="HostProject.Abstractions" />
     <Using Include="HostProject.Application" />

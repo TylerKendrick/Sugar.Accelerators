@@ -13,7 +13,7 @@ public interface IService
     ///     A <see cref="Task{TResult}"/> representing the asynchronous operation,
     ///     which returns a <see cref="Person"/> object containing the person's information.
     /// </returns>
-    Task<Person> GetPerson(string name) 
+    protected static Task<Person> GetPerson(IService service, string name)
     {
         var source = new TaskCompletionSource<Person>();
         switch (name)
@@ -37,4 +37,15 @@ public interface IService
         }
         return source.Task;
     }
+    
+    /// <summary>
+    /// Gets information for a person with the specified name.
+    /// </summary>
+    /// <param name="name">The name of the person to retrieve information for.</param>
+    /// <returns>
+    ///     A <see cref="Task{TResult}"/> representing the asynchronous operation,
+    ///     which returns a <see cref="Person"/> object containing the person's information.
+    /// </returns>
+    Task<Person> GetPerson(string name) => IService.GetPerson(this, name);
+
 }
