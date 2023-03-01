@@ -1,27 +1,12 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
-  <Import Project="Sdk.props" Sdk="Sugar.Accelerators.Sdks.Common"/>
+  <Import Project="Sdk.props" Sdk="Sugar.Accelerators.Sdks.Common" />
   
   <ItemGroup Label="Packages">
-    <PackageReference Include="Automapper" Version="*" />
-    <PackageReference Include="FluentValidation" Version="*" />
-    <PackageReference Include="Hygiene" Version="*" />
-    <PackageReference Include="MediatR" Version="*" />
-    <PackageReference Include="Polly" Version="*" />
-    <PackageReference Include="Humanizer.Core" Version="*" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="*" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="*" />
-    <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="*" />
-    <PackageReference Include="Microsoft.Extensions.Localization.Abstractions" Version="*" />
-    <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions" Version="*" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="*" />
-    <PackageReference Include="Microsoft.Extensions.Options" Version="*" />
     <PackageReference Include="Microsoft.AspNetCore.RateLimiting" Version="*" />
     <PackageReference Include="Microsoft.AspNetCore.DataProtection.Abstractions" Version="*" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Abstractions" Version="*" />
     <PackageReference Include="Microsoft.AspNetCore.Authorization" Version="*" />
-    <PackageReference Include="CommunityToolkit.Common" Version="*" />
-    <PackageReference Include="CommunityToolkit.Diagnostics" Version="*" />
   </ItemGroup>
 
   <ItemGroup Label="Analyzers">

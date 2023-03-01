@@ -1,0 +1,24 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"files.exclude": {
+			"**/.git": true,
+			"**/.svn": true,
+			"**/.hg": true,
+			"**/CVS": true,
+			"**/.DS_Store": true,
+			"**/Thumbs.db": true,
+			"**/*.crswap": true,
+			".docs/**": true,
+			"bin/**": true,
+			"obj/**": true,
+			"*.code-workspace": true,
+			"*.csproj": true,
+			"version.json": true,
+		}
+	}
+}
