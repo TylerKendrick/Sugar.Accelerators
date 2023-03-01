@@ -4,7 +4,7 @@
     "classifications": [ "Common", "Template", "MSBuild" ],
     "identity": "Sugar.Accelerators.Templates.Generator",
     "name": "Sugar Templates: Custom Generator projects",
-    "shortName": "sugar-template-Generator",
+    "shortName": "sugar-gen",
     "sourceName": "GeneratorProject",
     "tags": {
       "language": "C#",

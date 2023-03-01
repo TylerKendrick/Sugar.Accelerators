@@ -4,7 +4,7 @@
     "classifications": [ "Common", "Testing", "NUnit" ],
     "identity": "Sugar.Accelerators.Templates.Testing.NUnit",
     "name": "Sugar Templates: Custom NUnit testing projects",
-    "shortName": "sugar-testing-nunit",
+    "shortName": "sugar-test",
     "sourceName": "TestingProject",
     "tags": {
       "language": "C#",

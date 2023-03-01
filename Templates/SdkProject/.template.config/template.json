@@ -4,7 +4,7 @@
     "classifications": [ "Common", "Sdk", "MSBuild" ],
     "identity": "Sugar.Accelerators.Templates.Sdk",
     "name": "Sugar Templates: Custom Sdk projects",
-    "shortName": "sdk",
+    "shortName": "sugar-sdk",
     "sourceName": "SdkProject",
     "tags": {
       "language": "C#",

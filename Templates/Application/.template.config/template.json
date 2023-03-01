@@ -1,0 +1,13 @@
+{
+    "$schema": "http://json.schemastore.org/template",
+    "author": "Tyler Kendrick",
+    "classifications": [ "Common", "Application" ],
+    "identity": "Sugar.Accelerators.Templates.Application",
+    "name": "Sugar Templates: Applications",
+    "shortName": "sugar-application",
+    "sourceName": "ApplicationProject",
+    "tags": {
+      "language": "C#",
+      "type": "project"
+    }
+  }
