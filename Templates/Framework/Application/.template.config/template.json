@@ -4,7 +4,7 @@
     "classifications": [ "Common", "Application" ],
     "identity": "Sugar.Accelerators.Templates.Application",
     "name": "Sugar Templates: Applications",
-    "shortName": "sugar-application",
+    "shortName": "sugar-app",
     "sourceName": "ApplicationProject",
     "tags": {
       "language": "C#",

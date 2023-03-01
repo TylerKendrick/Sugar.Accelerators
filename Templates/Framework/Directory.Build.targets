@@ -12,5 +12,19 @@
         <Message Importance="high" Text="Generating Serialization Project" />
         <Exec Command="dotnet new sugar-abstractions -n ApplicationProject --force"  WorkingDirectory="../" />
         <Message Importance="high" Text="Serialization Project Created" />
+    </Target>    
+    <Target Name="refresh-sugar-host"
+        Condition="'$(MSBuildProjectName)'=='HostProject.Host'"
+        BeforeTargets="_GenerateRestoreProjectPathWalk">
+        <Message Importance="high" Text="Generating Application Project" />
+        <Exec Command="dotnet new sugar-app -n HostProject --force"  WorkingDirectory="../" />
+        <Message Importance="high" Text="Application Project Created" />
+    </Target>    
+    <Target Name="refresh-sugar-webhost"
+        Condition="'$(MSBuildProjectName)'=='WebHostProject.WebHost'"
+        BeforeTargets="_GenerateRestoreProjectPathWalk">
+        <Message Importance="high" Text="Generating Web Application Project" />
+        <Exec Command="dotnet new sugar-app -n WebHostProject --force"  WorkingDirectory="../" />
+        <Message Importance="high" Text="Web Application Project Created" />
     </Target>
 </Project>

@@ -1,0 +1,10 @@
+<Project Sdk="Sugar.Accelerators.Sdks.App.Core">
+
+  <ItemGroup>
+    <ProjectReference Include="../HostProject.Abstractions/HostProject.Abstractions.csproj" />
+    <ProjectReference Include="../HostProject.Serialization/HostProject.Serialization.csproj" />
+    <Using Include="HostProject.Serialization" />
+    <Using Include="HostProject.Abstractions" />
+  </ItemGroup>
+
+</Project>

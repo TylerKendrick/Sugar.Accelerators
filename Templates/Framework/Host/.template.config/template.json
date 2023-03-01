@@ -1,0 +1,13 @@
+{
+    "$schema": "http://json.schemastore.org/template",
+    "author": "Tyler Kendrick",
+    "classifications": [ "Common", "Host" ],
+    "identity": "Sugar.Accelerators.Templates.Application.Host",
+    "name": "Sugar Templates: Application Hosts",
+    "shortName": "sugar-host",
+    "sourceName": "HostProject",
+    "tags": {
+      "language": "C#",
+      "type": "project"
+    }
+  }
