@@ -1,6 +1,6 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
-  <Import Project="Sdk.props" Sdk="Sugar.Accelerators.Sdks.Common" />
+  <Import Project="Sdk.props" Sdk="Sugar.Accelerators.Sdks.App.Host" />
   
   <ItemGroup Label="Packages">
     <PackageReference Include="Microsoft.AspNetCore.RateLimiting" Version="*" />

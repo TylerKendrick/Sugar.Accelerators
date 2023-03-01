@@ -1,0 +1,16 @@
+name: Sdks.App.WebHost
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - Sdks/App.WebHost/**/*
+jobs:
+  full-release:
+    uses: ./.github/workflows/full-release.yml
+    secrets: inherit
+    with:
+      path: Sdks/App.WebHost
+      name: 'Sugar.Accelerators.Sdks.App.WebHost'
