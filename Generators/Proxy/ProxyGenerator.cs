@@ -134,6 +134,34 @@ public class ProxyGenerator : ISourceGenerator
         return methodBody;
     }
 
+    private class AttributeSyntaxReceiver : ISyntaxReceiver
+    {
+        private Type _attributeType;
+        private List<TypeDeclarationSyntax> _types = new();
+
+        public AttributeSyntaxReceiver(Attribute attribute)
+        {
+            _attributeType = attribute.GetType();
+        }
+
+        public IEnumerable<TypeDeclarationSyntax> TypeDeclarations => _types;
+
+        public void OnVisitSyntaxNode(SyntaxNode syntaxNode)
+        {
+            // Find interface declarations
+            if (syntaxNode is not TypeDeclarationSyntax typeDecl) return;
+            var attrs = typeDecl
+                .AttributeLists
+                .SelectMany(x => x.Attributes)
+                .Select(x => x.Name)
+                .Select(x => x.NormalizeWhitespace())
+                .Select(x => x.ToFullString());
+            var attrName = _attributeType.FullName;
+            if(!attrs.Contains(attrName)) return;
+
+            _types.Add(typeDecl);
+       }
+    }
     // Syntax receiver to find interface declarations with GenerateProxy attribute
     private class SyntaxReceiver : ISyntaxReceiver
     {
@@ -153,7 +181,7 @@ public class ProxyGenerator : ISourceGenerator
                 Console.WriteLine(attr);
             var attrName = typeof(GenerateProxyAttribute).FullName;
             if(!attrs.Contains(attrName)) return;
-
+            // TODO: make into a list.
             InterfaceDeclaration = interfaceDecl;
        }
     }

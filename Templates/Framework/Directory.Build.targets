@@ -27,4 +27,36 @@
         <Exec Command="dotnet new sugar-app -n WebHostProject --force"  WorkingDirectory="../" />
         <Message Importance="high" Text="Web Application Project Created" />
     </Target>
+    
+    <Target Name="InstallTemplateReferences" BeforeTargets="_GenerateRestoreProjectPathWalk">
+        <ItemGroup>
+            <TemplatesToInstall Include="@(TemplateReference)"/>
+        </ItemGroup>
+        <Exec
+            Command="dotnet new list %(TemplatesToInstall.Template)"
+            ConsoleToMSBuild="true" Condition="@(TemplatesToInstall->Count()) != 0">
+            <Output TaskParameter="ConsoleOutput" PropertyName="InstalledTemplates"/>
+        </Exec>
+        <Message Text="TEMPLATE-COUNT: @(TemplatesToInstall->Count())"
+            Condition="'@(TemplatesToInstall.Identity)' != '' AND @(TemplatesToInstall->Count()) != 0 AND @(InstalledTemplates) != ''"
+            Importance="High" />
+        <Exec Condition="'@(TemplatesToInstall.Identity)' != '' AND @(TemplatesToInstall->Count()) != 0 AND @(InstalledTemplates) != ''" 
+                Command="dotnet new install %(TemplatesToInstall.Include)" 
+                ConsoleToMSBuild="true" 
+                IgnoreExitCode="true" />
+
+        <ItemGroup>
+            <TemplatesToRun Include="@(TemplateReference)" />
+        </ItemGroup>
+        <Exec Condition="@(TemplatesToRun->Count()) != 0 AND '@(TemplatesToRun.Identity)' != ''" 
+            Command="dotnet new %(TemplatesToRun.Template) -n %(TemplatesToRun.Name) -o %(TemplatesToRun.WorkingDirectory) --force" 
+            ConsoleToMSBuild="true" 
+            IgnoreExitCode="true" />
+        <Message Importance="High"
+            Condition="@(TemplatesToRun->Count()) != 0 AND '@(TemplatesToRun.Identity)' != ''"
+            Text="Referenced $([System.IO.Path]::Combine(%(TemplatesToRun.WorkingDirectory),%(TemplatesToRun.Path)))" />
+        <ItemGroup Condition="@(TemplatesToRun->Count()) != 0 AND '@(TemplatesToRun.Identity)' != ''">
+            <ProjectReference Include="$([System.IO.Path]::Combine(%(TemplatesToRun.WorkingDirectory),%(TemplatesToRun.Path)))" />
+        </ItemGroup>
+    </Target>
 </Project>

@@ -6,9 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="../ApplicationProject.Abstractions/ApplicationProject.Abstractions.csproj" />
-    <ProjectReference Include="../ApplicationProject.Serialization/ApplicationProject.Serialization.csproj" />
     <Using Include="ApplicationProject.Serialization" />
     <Using Include="ApplicationProject.Abstractions" />
   </ItemGroup>
-
 </Project>
