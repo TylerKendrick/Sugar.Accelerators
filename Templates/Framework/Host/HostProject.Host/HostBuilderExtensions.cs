@@ -9,65 +9,15 @@ using FluentValidation;
 /// <summary>
 /// Contains extension methods for configuring an application using <see cref="IHostBuilder"/>.
 /// </summary>
-public static class HostBuilderExtensions
+public static partial class HostBuilderExtensions
 {
-    private static IHostBuilder ConfigureApplicationDependencies(this IHostBuilder hostBuilder)
-        => hostBuilder.ConfigureServices((context, services) =>
-        {
-            services.AddScoped<IAsyncPolicy<Person>>();
-            services.AddScoped<ISanitizer<string>>();
-            services.AddScoped<IValidator<string>>();
-            services.AddSingleton<IService, Service>();
-        });
-
-    private static IHostBuilder ConfigureApplicationConfiguration(this IHostBuilder hostBuilder)
-    {
-        string environmentName = 
-            Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")
-            ?? Environments.Development;
-        return hostBuilder
-            .ConfigureAppConfiguration((context, builder) =>
-            {
-                // Add support for app secrets
-                builder.AddEnvironmentVariables();
-                builder.AddJsonFile("appsettings.json");
-                builder.AddJsonFile($"appsettings.{environmentName}.json");
-                builder.AddUserSecrets<Service>();
-            });
-    }
-
-    private static IHostBuilder ConfigureApplicationHost(
-        this IHostBuilder hostBuilder,
-        Action<ILoggingBuilder> configureLogging,
-        Action<MediatRServiceConfiguration> configureMediatR,
-        Action<IServiceCollection> configure,
-        string resourcePath)
-        => hostBuilder.ConfigureServices((context, services) =>
-        {
-            services.AddLogging(builder =>
-            {
-                builder.ClearProviders();
-                configureLogging(builder);
-            });
-            // TODO: Add Automapper
-            // TODO: Add Identity
-            // TODO: Register Humanizer.
-            services.AddMediatR(configureMediatR);
-            services.AddLocalization(o => o.ResourcesPath = resourcePath);
-            services.AddHealthChecks();
-
-            // TODO: Add file providers
-            //services.AddSingleton<IFileProvider>(new PhysicalFileProvider(Directory.GetCurrentDirectory()));
-
-            // TODO: Add caching
-            //services.AddMemoryCache();
-            configure(services);
-        });
-
     /// <summary>
     /// Configures the application with the specified services and settings.
     /// </summary>
     /// <param name="hostBuilder">The <see cref="IHostBuilder"/> to configure.</param>
+    /// <param name="policyFactory">Provides an instance of a policy.</param>
+    /// <param name="sanitizerFactory">Provides an instance of a sanitizer.</param>
+    /// <param name="validatorFactory">Provides an instance of a validator.</param>
     /// <param name="configureLogging">An optional <see cref="Action{T}"/> delegate used to configure logging.</param>
     /// <param name="configureMediatR">An optional <see cref="Action{T}"/> delegate used to configure MediatR.</param>
     /// <param name="configure">An optional <see cref="Action{T}"/> delegate used to configure the service collection.</param>
@@ -81,13 +31,19 @@ public static class HostBuilderExtensions
     /// </remarks>
     public static IHostBuilder ConfigureApplication(
         this IHostBuilder hostBuilder,
+        Func<IServiceProvider, IAsyncPolicy<Person>> policyFactory,
+        Func<IServiceProvider, ISanitizer<string>> sanitizerFactory,
+        Func<IServiceProvider, IValidator<string>> validatorFactory,
         Action<ILoggingBuilder>? configureLogging = default,
         Action<MediatRServiceConfiguration>? configureMediatR = default,
         Action<IServiceCollection>? configure = default,
         string? resourcePath = default)
         => hostBuilder
             .ConfigureApplicationConfiguration()
-            .ConfigureApplicationDependencies()
+            .ConfigureApplicationDependencies(
+                policyFactory,
+                sanitizerFactory,
+                validatorFactory)
             .ConfigureApplicationHost(
                 configureLogging ?? (x => {}),
                 configureMediatR ?? (x => {}),

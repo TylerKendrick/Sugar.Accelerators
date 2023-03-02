@@ -1,6 +1,7 @@
 <Project Sdk="Sugar.Accelerators.Sdks.App.Core">
   <PropertyGroup>
     <DefaultDocumentationLogLevel>Off</DefaultDocumentationLogLevel>
+    <RootNamespace>ApplicationProject.Application</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

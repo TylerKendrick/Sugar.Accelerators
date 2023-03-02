@@ -1,0 +1,18 @@
+<Project Sdk="Sugar.Accelerators.Sdks.Testing.NUnit">
+    <PropertyGroup>
+        <RootNamespace>Sugar.Accelerators.Generators.Proxy.Tests</RootNamespace>
+		  <NoPackageAnalysis>true</NoPackageAnalysis>
+    <DefaultDocumentationLogLevel>Off</DefaultDocumentationLogLevel>
+        <!-- <TargetFramework>netstandard2.0</TargetFramework> -->
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference
+            Include="Microsoft.CodeAnalysis"
+            Version="*" />
+        <PackageReference
+            Include="Microsoft.CodeAnalysis.CSharp.SourceGenerators.Testing.NUnit"
+            Version="*" />
+        <ProjectReference
+            Include="../Proxy/Proxy.csproj" />
+    </ItemGroup>
+</Project>
