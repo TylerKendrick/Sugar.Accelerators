@@ -4,8 +4,6 @@
   
   <ItemGroup Label="Packages">
     <PackageReference Include="Microsoft.AspNetCore.RateLimiting" Version="*" />
-    <PackageReference Include="Microsoft.AspNetCore.DataProtection.Abstractions" Version="*" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.Abstractions" Version="*" />
     <PackageReference Include="Microsoft.AspNetCore.Authorization" Version="*" />
   </ItemGroup>
 
