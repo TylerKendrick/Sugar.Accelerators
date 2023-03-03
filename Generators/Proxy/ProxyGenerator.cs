@@ -49,7 +49,8 @@ public partial class ProxyGenerator : ISourceGenerator
         var proxyClass = SyntaxFactory.ClassDeclaration(proxyClassIdentifier)
             .AddModifiers(SyntaxFactory.Token(SyntaxKind.PublicKeyword))
             .AddBaseListTypes(SyntaxFactory.SimpleBaseType(SyntaxFactory.ParseTypeName(typeDecl.Identifier.Text)));
-        var constructor = GenerateConstructor(typeDecl, proxyClassIdentifier, out var constructorFields);
+        var constructor = GenerateConstructor(typeDecl.Identifier, proxyClassIdentifier, out var constructorFields);
+        var proxyHandle = SyntaxFactory.Identifier("_proxyHandle");
         var methods = GenerateMethods(typeDecl, proxyHandle, proxyClass);
         return proxyClass
             .AddMembers(constructor)
