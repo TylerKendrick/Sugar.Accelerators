@@ -5,7 +5,7 @@
     "rollForward": "latestFeature"
   },
   "msbuild-sdks": {
-    "Sugar.Accelerators.Sdks.Common": "1.0.44-beta-ga07cb66f8d",
+    "Sugar.Accelerators.Sdks.Common": "1.0.36-beta-g6310e89b57",
     "Sugar.Accelerators.Sdks.Grpc": "1.0.3-beta-ga3991eafa3",
     "Sugar.Accelerators.Sdks.App.Core": "1.0.30-beta-g3dba6def17",
     "Sugar.Accelerators.Sdks.App.Host": "1.0.3-beta-g5abcdc7157",

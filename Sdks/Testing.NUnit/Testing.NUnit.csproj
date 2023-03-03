@@ -1,6 +1,3 @@
 <Project Sdk="Sugar.Accelerators.Sdks.Common">
-    <ItemGroup>
-        <PackageReference Include="Sugar.Core.Testing.NUnit" Version="*-*" />
-        <PackageReference Include="coverlet.collector" Version="*" />
-    </ItemGroup>
+
 </Project>

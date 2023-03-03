@@ -8,6 +8,7 @@
     <PackageReference Include="NUnit3TestAdapter" Version="*" PrivateAssets="All" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="*" PrivateAssets="All" />
     <PackageReference Include="Moq" Version="*" />
+    <PackageReference Include="Sugar.Core.Testing.NUnit" Version="*-*" />
     <PackageReference Include="coverlet.collector" Version="*" />
     <Using Include="NUnit.Framework" />
     <Using Include="Moq" />
