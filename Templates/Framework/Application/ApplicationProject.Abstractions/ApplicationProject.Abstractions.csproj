@@ -1,7 +1,4 @@
 <Project Sdk="Sugar.Accelerators.Sdks.Common">
-  <PropertyGroup>
-    <DefaultDocumentationLogLevel>Off</DefaultDocumentationLogLevel>
-  </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="../ApplicationProject.Serialization/ApplicationProject.Serialization.csproj" />

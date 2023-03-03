@@ -5,11 +5,11 @@
     "rollForward": "latestFeature"
   },
   "msbuild-sdks": {
-    "Sugar.Accelerators.Sdks.Common": "1.0.2-beta-g1e9fb8a5af",
+    "Sugar.Accelerators.Sdks.Common": "1.0.44-beta-ga07cb66f8d",
     "Sugar.Accelerators.Sdks.Grpc": "1.0.3-beta-ga3991eafa3",
-    "Sugar.Accelerators.Sdks.App.Core": "1.0.3-beta-ga3991eafa3",
+    "Sugar.Accelerators.Sdks.App.Core": "1.0.30-beta-g3dba6def17",
     "Sugar.Accelerators.Sdks.App.Host": "1.0.3-beta-g5abcdc7157",
-    "Sugar.Accelerators.Sdks.App.WebHost": "1.0.3-beta-ga3991eafa3",
-    "Sugar.Accelerators.Sdks.Testing.NUnit": "1.0.8-beta-gaae34c750d"
+    "Sugar.Accelerators.Sdks.App.WebHost": "1.0.17-beta-g3dba6def17",
+    "Sugar.Accelerators.Sdks.Testing.NUnit": "1.0.25-beta-g9408fbba2c"
   }
 }

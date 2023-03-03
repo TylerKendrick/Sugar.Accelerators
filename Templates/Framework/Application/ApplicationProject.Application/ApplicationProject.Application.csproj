@@ -1,12 +1,9 @@
 <Project Sdk="Sugar.Accelerators.Sdks.App.Core">
-  <PropertyGroup>
-    <DefaultDocumentationLogLevel>Off</DefaultDocumentationLogLevel>
-    <RootNamespace>ApplicationProject.Application</RootNamespace>
-  </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="../ApplicationProject.Abstractions/ApplicationProject.Abstractions.csproj" />
     <Using Include="ApplicationProject.Serialization" />
     <Using Include="ApplicationProject.Abstractions" />
   </ItemGroup>
+  
 </Project>
