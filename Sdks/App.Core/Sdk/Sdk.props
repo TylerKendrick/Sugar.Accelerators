@@ -21,6 +21,12 @@
     <PackageReference Include="Microsoft.Extensions.Options" Version="*" />
     <PackageReference Include="CommunityToolkit.Common" Version="*" />
     <PackageReference Include="CommunityToolkit.Diagnostics" Version="*" />
+    <PackageReference Include="CommunityToolkit.Authentication" Version="*" />
+    <!-- TODO: Update to non-prerelease when available. -->
+    <PackageReference Include="Reaqtor.Share.Core" Version="*-*" />
+    <PackageReference Include="DotNext" Version="*" />
+    <PackageReference Include="Pharmacist.MsBuild" Version="*" PrivateAssets="all" />
+    <PackageReference Include="Pharmacist.Common" Version="*" />
   </ItemGroup>
 
   <ItemGroup Label="Analyzers">
