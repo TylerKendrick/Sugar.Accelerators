@@ -12,6 +12,7 @@
     <PackageReference Include="NodaTime" Version="*" />
     <PackageReference Include="Microsoft.FeatureManagement" Version="*" />
     <PackageReference Include="Microsoft.AspNetCore.DataProtection.Abstractions" Version="*" />
+    <PackageReference Include="Microsoft.IdentityModel.Abstractions" Version="*" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="*" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="*" />
     <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="*" />
