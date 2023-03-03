@@ -2,7 +2,7 @@ namespace ApplicationProject.Application;
 /// <summary>
 /// Abstract base class for implementing the decorator pattern on the <see cref="IService"/> interface.
 /// </summary>
-public abstract class ServiceDecorator : IService.Decorator
+public abstract class ServiceDecorator : IService
 {
     private readonly IService _decoratedService;
 

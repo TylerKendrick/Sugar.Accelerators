@@ -5,10 +5,6 @@
 /// </summary>
 public interface IService
 {
-    class Decorator : IService
-    {
-        
-    }
     /// <summary>
     /// Gets information for a person with the specified name.
     /// </summary>
