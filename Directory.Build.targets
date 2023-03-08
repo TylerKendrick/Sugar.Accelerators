@@ -13,17 +13,21 @@
       <Message Importance="high" Text="templates installed" />
   </Target>   -->
 
-  <!-- <Target Name="Copy Nuget Packages">
+  <Target Name="Copy Nuget Packages" AfterTargets="Pack">
+    <ItemGroup>
+      <_CopyItems Include="$(PackageOutputPath)\**\*.nupkg;$(PackageOutputPath)\**\*.snupkg">
+        <InProject>false</InProject>
+      </_CopyItems>
+    </ItemGroup>
     <Message
-      Text="Copying files from @(PackageOutputPath)"
+      Text="Copying @(_CopyItems->Count()) files from $(PackageOutputPath) to \\$(RootDirectory)\\.nupkg"
       Importance="High" />
     <Copy
-      SourceFiles="@(PackageOutputPath)"
-      DestinationFolder=".\\nupkg" />
-    
+      SourceFiles="@(_CopyItems)"
+      DestinationFolder="\\$(RootDirectory)\\.nupkg" />
     <Message
-      Text="Copied files from @(PackageOutputPath)"
+      Text="Copied @(_CopyItems->Count()) files from $(PackageOutputPath) to \\$(RootDirectory)\\.nupkg"
       Importance="High" />
-  </Target> -->
+  </Target>
 
 </Project>
