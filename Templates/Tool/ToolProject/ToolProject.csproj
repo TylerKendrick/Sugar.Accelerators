@@ -1,0 +1,6 @@
+<Project Sdk="Sugar.Accelerators.Sdks.Tool">
+    <PropertyGroup>
+		<NoPackageAnalysis>true</NoPackageAnalysis>
+        <ToolCommandName>ToolProject</ToolCommandName>
+    </PropertyGroup>
+</Project>

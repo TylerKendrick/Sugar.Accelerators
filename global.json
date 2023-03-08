@@ -10,6 +10,7 @@
     "Sugar.Accelerators.Sdks.App.Core": "1.0.30-beta-g3dba6def17",
     "Sugar.Accelerators.Sdks.App.Host": "1.0.3-beta-g5abcdc7157",
     "Sugar.Accelerators.Sdks.App.WebHost": "1.0.17-beta-g3dba6def17",
-    "Sugar.Accelerators.Sdks.Testing.NUnit": "1.0.25-beta-g9408fbba2c"
+    "Sugar.Accelerators.Sdks.Testing.NUnit": "1.0.25-beta-g9408fbba2c",
+    "Sugar.Accelerators.Sdks.Tool": "1.0.1-beta-gcd3bdb66ac"
   }
 }

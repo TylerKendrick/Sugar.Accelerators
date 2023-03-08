@@ -1,0 +1,5 @@
+<Project Sdk="Sugar.Accelerators.Sdks.Common">
+    <ItemGroup>
+        <Compile Remove="ToolProject/**"/>
+    </ItemGroup>
+</Project>

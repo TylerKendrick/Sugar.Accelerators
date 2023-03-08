@@ -4,6 +4,7 @@
 
   <PropertyGroup>
     <PackAsTool>true</PackAsTool>
+    <OutputType>Exe</OutputType>
     <ToolCommandName>$(MSBuildProjectName)</ToolCommandName>
   </PropertyGroup>
   

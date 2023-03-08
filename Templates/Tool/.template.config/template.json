@@ -1,0 +1,13 @@
+{
+    "$schema": "http://json.schemastore.org/template",
+    "author": "Tyler Kendrick",
+    "classifications": [ "Common", "Template", "Tool" ],
+    "identity": "Sugar.Accelerators.Templates.Tool",
+    "name": "Sugar Templates: Custom Tool projects",
+    "shortName": "sugar-tool",
+    "sourceName": "ToolProject",
+    "tags": {
+      "language": "C#",
+      "type": "project"
+    }
+  }

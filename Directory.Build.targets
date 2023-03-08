@@ -13,4 +13,17 @@
       <Message Importance="high" Text="templates installed" />
   </Target>   -->
 
+  <!-- <Target Name="Copy Nuget Packages">
+    <Message
+      Text="Copying files from @(PackageOutputPath)"
+      Importance="High" />
+    <Copy
+      SourceFiles="@(PackageOutputPath)"
+      DestinationFolder=".\\nupkg" />
+    
+    <Message
+      Text="Copied files from @(PackageOutputPath)"
+      Importance="High" />
+  </Target> -->
+
 </Project>
