@@ -1,3 +1,5 @@
+namespace Sugar.Core.Generators;
+
 /// <summary>
 /// Provides a builder for generating <see cref="ClassDeclarationSyntax"/> objects.
 /// </summary>
@@ -6,6 +8,7 @@ public class ClassSyntaxBuilder
     private readonly string className;
     private readonly SyntaxKind[] modifiers;
     private readonly List<PropertyDeclarationSyntax> properties = new();
+    private readonly List<FieldDeclarationSyntax> fields = new();
     private readonly List<MethodDeclarationSyntax> methods = new();
     private ConstructorDeclarationSyntax constructor;
 
@@ -101,6 +104,21 @@ public class ClassSyntaxBuilder
         methods.Add(method);
         return this;
     }
+
+    public ClassSyntaxBuilder BuildField(string type, string name)
+    {
+        var modifiers = new[]{SyntaxKind.PrivateKeyword};
+        var tokens = modifiers.Select(SyntaxFactory.Token).ToArray();
+        var typeName = SyntaxFactory.ParseTypeName(type);
+        var declaration = SyntaxFactory.VariableDeclaration(typeName)
+            .AddVariables(SyntaxFactory.VariableDeclarator(name));
+        var field = SyntaxFactory.FieldDeclaration(declaration)
+            .AddModifiers(tokens);
+
+        fields.Add(field);
+        return this;
+    }
+
 
     private ConstructorDeclarationSyntax CreateConstructor(
         string[]? parameters = null,

@@ -1,7 +1,9 @@
 <Project Sdk="Sugar.Accelerators.Sdks.Common">
 
     <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
         <PackageId>Sugar.Core.$(MSBuildProjectName)</PackageId>
+        <PackageType>Library</PackageType>
     </PropertyGroup>
 
     <ItemGroup>

@@ -4,7 +4,7 @@ using System;
 using System.Reflection;
 using System.Linq;
 using NUnit.Framework;
-using Sugar.Accelerators.Generators.Proxy;
+using Sugar.Accelerators.Generators;
 
 namespace GeneratorTests.Tests
 {
@@ -18,7 +18,7 @@ namespace GeneratorTests.Tests
             var inputCompilation = CreateCompilation(@"
 namespace MyCode
 {
-    [Sugar.Accelerators.Generators.Proxy.GenerateProxyAttribute]
+    [Sugar.Accelerators.Generators.GenerateProxyAttribute]
     public partial interface MyInterface
     {
         void Method();

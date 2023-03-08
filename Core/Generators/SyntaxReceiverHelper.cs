@@ -1,3 +1,5 @@
+namespace Sugar.Core.Generators;
+
 /// <summary>
 /// Helper class for working with <see cref="CSharpSyntaxNode"/> instances.
 /// </summary>

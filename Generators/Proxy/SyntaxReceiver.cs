@@ -1,10 +1,4 @@
-using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CSharp;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
-
-namespace Sugar.Accelerators.Generators.Proxy;
-using System;
-using System.Linq;
+namespace Sugar.Accelerators.Generators;
 
 public partial class ProxyGenerator
 {

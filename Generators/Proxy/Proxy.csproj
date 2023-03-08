@@ -1,10 +1,10 @@
 <Project Sdk="Sugar.Accelerators.Sdks.Common">
-    <PropertyGroup>
-		  <NoPackageAnalysis>true</NoPackageAnalysis>
-        <RootNamespace>Sugar.Accelerators.Generators.Proxy</RootNamespace>
+  <PropertyGroup>
+    <NoPackageAnalysis>true</NoPackageAnalysis>
+    <RootNamespace>Sugar.Accelerators.Generators.Proxy</RootNamespace>
     <DefaultDocumentationLogLevel>Off</DefaultDocumentationLogLevel>
     <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
-    </PropertyGroup>
+  </PropertyGroup>
     
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -12,8 +12,16 @@
 
   <!-- The following libraries include the source generator interfaces and types we need -->
   <ItemGroup>
-    <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="*" PrivateAssets="all" />
-    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="*" PrivateAssets="all" />
+    <PackageReference Include="Sugar.Core.Generators" Version="1.0.3-*" />
+    <PackageReference Include="Humanizer.Core" Version="*" />
+    <Using Include="Humanizer" />
+    <Using Include="Sugar.Core.Generators" />
+    <Using Include="System" />
+    <Using Include="System.Linq" />
+    <Using Include="Microsoft.CodeAnalysis" />
+    <Using Include="Microsoft.CodeAnalysis.CSharp" />
+    <Using Include="Microsoft.CodeAnalysis.CSharp.Syntax" />
+    <Using Include="Microsoft.CodeAnalysis.Text" />
   </ItemGroup>
 
   <!-- This ensures the library will be packaged as a source generator when we use `dotnet pack` -->
@@ -24,7 +32,7 @@
 
   <PropertyGroup>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild> <!-- Generates a package at build -->
-    <IncludeBuildOutput>false</IncludeBuildOutput> <!-- Do not include the generator as a lib dependency -->
+    <!-- <IncludeBuildOutput>false</IncludeBuildOutput> Do not include the generator as a lib dependency -->
   </PropertyGroup>
 
 </Project>

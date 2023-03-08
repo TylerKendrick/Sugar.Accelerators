@@ -1,12 +1,6 @@
-using Microsoft.CodeAnalysis.Text;
-
-namespace Sugar.Accelerators.Generators.Proxy;
-using System;
-using System.Linq;
-using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CSharp;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Collections.Generic;
+using Humanizer;
+namespace Sugar.Accelerators.Generators;
 
 [Generator]
 public partial class ProxyGenerator : ISourceGenerator
@@ -49,12 +43,14 @@ public partial class ProxyGenerator : ISourceGenerator
         var proxyClass = SyntaxFactory.ClassDeclaration(proxyClassIdentifier)
             .AddModifiers(SyntaxFactory.Token(SyntaxKind.PublicKeyword))
             .AddBaseListTypes(SyntaxFactory.SimpleBaseType(SyntaxFactory.ParseTypeName(typeDecl.Identifier.Text)));
-        var constructor = GenerateConstructor(typeDecl.Identifier, proxyClassIdentifier, out var constructorFields);
-        var proxyHandle = SyntaxFactory.Identifier("_proxyHandle");
-        var methods = GenerateMethods(typeDecl, proxyHandle, proxyClass);
+        var constructor = GenerateConstructor(typeDecl.Identifier, proxyClassIdentifier, out var proxyHandle);
+        var proxyFieldName = proxyHandle.Declaration.Variables
+            .Select(x => x.Identifier)
+            .First();
+        var methods = GenerateMethods(typeDecl, proxyFieldName, proxyClass);
         return proxyClass
             .AddMembers(constructor)
-            .AddMembers(constructorFields)
+            .AddMembers(proxyHandle)
             .AddMembers(methods);
     }
 
@@ -70,19 +66,20 @@ public partial class ProxyGenerator : ISourceGenerator
     private static ConstructorDeclarationSyntax GenerateConstructor(
         SyntaxToken typeDecl,
         SyntaxToken proxyClassIdentifier,
-        out FieldDeclarationSyntax[] fields)
+        out FieldDeclarationSyntax proxyField)
     {
         var @params = SyntaxFactory.ParseParameterList(
                 $"({typeDecl.NormalizeWhitespace().ToFullString()} proxyHandle)");
+        var proxyHandleIdentifier = $"_{typeDecl.Text.Camelize()}";
         var proxyHandleField = SyntaxFactory.FieldDeclaration(SyntaxFactory.VariableDeclaration(
             SyntaxFactory.ParseTypeName(typeDecl.Text),
             SyntaxFactory.SeparatedList<VariableDeclaratorSyntax>()
-                .Add(SyntaxFactory.VariableDeclarator(typeDecl))
+                .Add(SyntaxFactory.VariableDeclarator(proxyHandleIdentifier))
             ));
-        fields = new[] { proxyHandleField };
+        proxyField = proxyHandleField;
         return SyntaxFactory.ConstructorDeclaration(proxyClassIdentifier)
             .WithModifiers(SyntaxFactory.TokenList(SyntaxFactory.Token(SyntaxKind.ProtectedKeyword)))
-            .WithBody(SyntaxFactory.Block(SyntaxFactory.ParseStatement("_proxyHandle = proxyHandle;")))
+            .WithBody(SyntaxFactory.Block(SyntaxFactory.ParseStatement($"{proxyHandleIdentifier} = proxyHandle;")))
             .WithParameterList(@params);
     }
 
