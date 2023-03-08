@@ -1,0 +1,16 @@
+name: Sdks.Tool
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - Sdks/Tool/**/*
+jobs:
+  full-release:
+    uses: ./.github/workflows/full-release.yml
+    secrets: inherit
+    with:
+      path: Sdks/Tool
+      name: 'Sugar.Accelerators.Sdks.Tool'

@@ -1,0 +1,7 @@
+<Project Sdk="Sugar.Accelerators.Sdks.Common">
+
+  <PropertyGroup Label="PackageInfo">
+    <PackageId>Sugar.Accelerators.Sdks.Tool</PackageId>
+  </PropertyGroup>
+
+</Project>
