@@ -20,13 +20,13 @@
       </_CopyItems>
     </ItemGroup>
     <Message
-      Text="Copying @(_CopyItems->Count()) files from $(PackageOutputPath) to \\$(RootDirectory)\\.nupkg"
+      Text="Copying @(_CopyItems->Count()) files from $(PackageOutputPath) to /$(RootDirectory)/.nupkg"
       Importance="High" />
-    <Copy
+    <Copy Condition="Exists('/$(RootDirectory)/.nupkg')"
       SourceFiles="@(_CopyItems)"
-      DestinationFolder="\\$(RootDirectory)\\.nupkg" />
+      DestinationFolder="/$(RootDirectory)/.nupkg" />
     <Message
-      Text="Copied @(_CopyItems->Count()) files from $(PackageOutputPath) to \\$(RootDirectory)\\.nupkg"
+      Text="Copied @(_CopyItems->Count()) files from $(PackageOutputPath) to /$(RootDirectory)/.nupkg"
       Importance="High" />
   </Target>
 

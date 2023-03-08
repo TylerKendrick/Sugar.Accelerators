@@ -1,0 +1,13 @@
+<Project Sdk="Sugar.Accelerators.Sdks.Common">
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.CodeAnalysis.CSharp" 
+            Version="*" />
+        <Using Include="System" />
+        <Using Include="System.Linq" />
+        <Using Include="Microsoft.CodeAnalysis" />
+        <Using Include="Microsoft.CodeAnalysis.CSharp" />
+        <Using Include="Microsoft.CodeAnalysis.CSharp.Syntax" />
+    </ItemGroup>
+
+</Project>
