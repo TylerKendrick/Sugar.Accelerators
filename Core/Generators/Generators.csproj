@@ -1,5 +1,9 @@
 <Project Sdk="Sugar.Accelerators.Sdks.Common">
 
+    <PropertyGroup>
+        <PackageId>Sugar.Core.$(MSBuildProjectName)</PackageId>
+    </PropertyGroup>
+
     <ItemGroup>
         <PackageReference Include="Microsoft.CodeAnalysis.CSharp" 
             Version="*" />

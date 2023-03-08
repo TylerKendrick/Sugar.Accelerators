@@ -1,0 +1,16 @@
+name: Core.Generators
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - Core/Generators/**/*
+jobs:
+  full-release:
+    uses: ./.github/workflows/full-release.yml
+    secrets: inherit
+    with:
+      path: Core/Generators
+      name: 'Sugar.Core.Generators'
