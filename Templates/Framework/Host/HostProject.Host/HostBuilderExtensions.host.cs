@@ -26,7 +26,7 @@ public static partial class HostBuilderExtensions
 
     private static IHostBuilder ConfigureApplicationHost(
         this IHostBuilder hostBuilder,
-        Action<ILoggingBuilder> configureLogging,
+        Action<Microsoft.Extensions.Logging.ILoggingBuilder> configureLogging,
         Action<MediatRServiceConfiguration> configureMediatR,
         Action<IServiceCollection> configure,
         string resourcePath)

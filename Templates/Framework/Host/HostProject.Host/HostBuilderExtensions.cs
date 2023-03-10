@@ -34,7 +34,7 @@ public static partial class HostBuilderExtensions
         Func<IServiceProvider, IAsyncPolicy<Person>> policyFactory,
         Func<IServiceProvider, ISanitizer<string>> sanitizerFactory,
         Func<IServiceProvider, IValidator<string>> validatorFactory,
-        Action<ILoggingBuilder>? configureLogging = default,
+        Action<Microsoft.Extensions.Logging.ILoggingBuilder>? configureLogging = default,
         Action<MediatRServiceConfiguration>? configureMediatR = default,
         Action<IServiceCollection>? configure = default,
         string? resourcePath = default)

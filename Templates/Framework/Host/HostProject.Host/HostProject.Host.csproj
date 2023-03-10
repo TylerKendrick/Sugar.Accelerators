@@ -15,12 +15,22 @@
     <PackageReference Include="Microsoft.Identity.Client" Version="*" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="*" />
     <PackageReference Include="Microsoft.NET.Build.Containers" Version="*" />
-    <PackageReference Include="Azure.Bicep.MSBuild" Version="*" />
+    <PackageReference Include="Azure.Bicep.MSBuild" Version="*"/>
     <ProjectReference Include="../HostProject.Application/HostProject.Application.csproj" />
     <Using Include="HostProject.Serialization" />
     <Using Include="HostProject.Abstractions" />
     <Using Include="HostProject.Application" />
     <Bicep Include="**\*.bicep" />
   </ItemGroup>
-
+  <ItemGroup Label="Bicep Configs" Condition="$(TargetPlatform)=='x64' OR $(TargetPlatform)=='anycpu'">
+    <PackageReference Include="Azure.Bicep.CommandLine.win-x64" Version="*"
+      Condition="$([MSBuild]::IsOSPlatform('Windows'))"/>
+    <PackageReference Include="Azure.Bicep.CommandLine.linux-x64" Version="*"
+      Condition="$([MSBuild]::IsOSPlatform('Linux'))"/>
+    <PackageReference Include="Azure.Bicep.CommandLine.osx-x64" Version="*"
+      Condition="$([MSBuild]::IsOSPlatform('OSX'))"/>
+  </ItemGroup>
+  <Target Name="ALWAYS" BeforeTargets="Restore">
+    <Message Text="MESSAGE: $([MSBuild]::IsOSPlatform('Linux'))" Importance="High" />
+  </Target>
 </Project>
