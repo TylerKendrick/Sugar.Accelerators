@@ -1,4 +1,6 @@
-﻿/// <summary>
+﻿namespace AbstractionsProject.Abstractions;
+
+/// <summary>
 /// Defines a service that provides access to person information.
 /// </summary>
 public interface IService

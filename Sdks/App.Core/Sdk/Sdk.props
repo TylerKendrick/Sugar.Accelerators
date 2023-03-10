@@ -30,8 +30,6 @@
     <!-- TODO: Update to non-prerelease when available. -->
     <PackageReference Include="Reaqtor.Shared.Core" Version="*-*" />
     <PackageReference Include="DotNext" Version="*" />
-    <PackageReference Include="Pharmacist.MsBuild" Version="*" PrivateAssets="all" />
-    <PackageReference Include="Pharmacist.Common" Version="*" />
   </ItemGroup>
 
   <ItemGroup Label="Analyzers">
