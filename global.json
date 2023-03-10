@@ -7,7 +7,7 @@
   "msbuild-sdks": {
     "Sugar.Accelerators.Sdks.Common": "1.0.36-beta-g6310e89b57",
     "Sugar.Accelerators.Sdks.Grpc": "1.0.3-beta-ga3991eafa3",
-    "Sugar.Accelerators.Sdks.App.Core": "1.0.30-beta-g3dba6def17",
+    "Sugar.Accelerators.Sdks.App.Core": "1.0.42-beta-g6600f5bfb6",
     "Sugar.Accelerators.Sdks.App.Host": "1.0.3-beta-g5abcdc7157",
     "Sugar.Accelerators.Sdks.App.WebHost": "1.0.17-beta-g3dba6def17",
     "Sugar.Accelerators.Sdks.Testing.NUnit": "1.0.25-beta-g9408fbba2c",
