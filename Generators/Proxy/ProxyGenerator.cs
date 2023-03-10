@@ -1,32 +1,27 @@
-using System.Collections.Generic;
-using Humanizer;
 namespace Sugar.Accelerators.Generators;
 
 [Generator]
-public partial class ProxyGenerator : ISourceGenerator
+public partial class ProxyGenerator : SourceGenerator<InterfaceAttributeSyntaxReceiver<GenerateProxyAttribute>>
 {
-    public void Initialize(GeneratorInitializationContext context)
+    protected override void OnExecute(
+        GeneratorExecutionContext context,
+        InterfaceAttributeSyntaxReceiver<GenerateProxyAttribute> interfaceSyntax)
     {
-        // Register syntax receiver to find interface declarations with GenerateProxy attribute
-        context.RegisterForSyntaxNotifications(() => new SyntaxReceiver());
-    }
-
-    public void Execute(GeneratorExecutionContext context)
-    {
-        if (context.SyntaxReceiver is not SyntaxReceiver syntaxReceiver) return;
-        foreach(InterfaceDeclarationSyntax interfaceDeclaration in syntaxReceiver.Declarations)
+        foreach(InterfaceDeclarationSyntax interfaceDeclaration in interfaceSyntax.Nodes)
         {
-            var name = interfaceDeclaration!.Identifier.Text;
-            // Get the compilation and semantic models for the generated code
-            var compilation = context.Compilation;
-            var semanticModel = compilation.GetSemanticModel(interfaceDeclaration.SyntaxTree);
-            
-            Console.WriteLine("starting generation");
+            string name = interfaceDeclaration!.Identifier.Text;
+            var identifier = SyntaxFactory.Identifier($"{name}Proxy");
+            var classSyntax = SyntaxFactory.ClassDeclaration(identifier)
+                .WithModifiers(SyntaxTokenList.Create(SyntaxFactory.Token(SyntaxKind.PublicKeyword)))
+                .Accept(new ProxySyntaxVisitor(SyntaxFactory.ParseTypeName(name)));
+            Console.WriteLine(classSyntax?.NormalizeWhitespace().ToFullString() ?? "No class syntax");
+
+            var classBuilder = new ClassSyntaxBuilder($"{name}Proxy");
+            classBuilder.BuildInterfaces(name);
             var typeNamespace = SyntaxReceiverHelper.GetNode<NamespaceDeclarationSyntax>(interfaceDeclaration);
             var usingBlock = SyntaxFactory.UsingDirective(
                 SyntaxFactory.ParseName(typeNamespace.Name.ToFullString()));
-            var body = GenerateProxyClass(interfaceDeclaration, semanticModel);
-            Console.WriteLine("wrapping up generation");
+            var body = GenerateProxyClass(classBuilder, interfaceDeclaration);
             var definitionString = string.Join("\n",
                 usingBlock.NormalizeWhitespace().ToFullString(),
                 body.NormalizeWhitespace().ToFullString());
@@ -34,61 +29,46 @@ public partial class ProxyGenerator : ISourceGenerator
             context.AddSource($"{name}.proxy.cs", SourceText.From(definitionString, System.Text.Encoding.UTF8));
         }
     }
-
-    private ClassDeclarationSyntax GenerateProxyClass(TypeDeclarationSyntax typeDecl, SemanticModel semanticModel)
+    
+    private ClassDeclarationSyntax GenerateProxyClass(ClassSyntaxBuilder builder,
+        TypeDeclarationSyntax typeDecl)
     {
-        // Create the class declaration for the proxy
-        var proxyClassName = $"{typeDecl.Identifier}Proxy";
-        var proxyClassIdentifier = SyntaxFactory.Identifier(proxyClassName);
-        var proxyClass = SyntaxFactory.ClassDeclaration(proxyClassIdentifier)
-            .AddModifiers(SyntaxFactory.Token(SyntaxKind.PublicKeyword))
-            .AddBaseListTypes(SyntaxFactory.SimpleBaseType(SyntaxFactory.ParseTypeName(typeDecl.Identifier.Text)));
-        var constructor = GenerateConstructor(typeDecl.Identifier, proxyClassIdentifier, out var proxyHandle);
-        var proxyFieldName = proxyHandle.Declaration.Variables
-            .Select(x => x.Identifier)
-            .First();
-        var methods = GenerateMethods(typeDecl, proxyFieldName, proxyClass);
-        return proxyClass
-            .AddMembers(constructor)
-            .AddMembers(proxyHandle)
-            .AddMembers(methods);
+        GenerateConstructor(builder, typeDecl.Identifier);
+        GenerateMethods(builder, typeDecl);
+        //TODO: Add Properties.
+        return builder.Build();
     }
+    private void GenerateMethods(
+        ClassSyntaxBuilder builder,
+        TypeDeclarationSyntax typeDecl)
+        {
+            foreach(MethodDeclarationSyntax method in typeDecl.Members)
+            {
+                var methodName = method.Identifier.ToFullString();
+                var returnType = method.ReturnType.ToFullString().ToLowerInvariant().Trim();
+                var returnStatement = returnType == "void" ? "" : "return ";
+                var args = SyntaxReceiverHelper.Convert(method.ParameterList).ToFullString();
+                var modifiers = new[]{SyntaxKind.PublicKeyword, SyntaxKind.VirtualKeyword}
+                    .Select(SyntaxFactory.Token);
+                modifiers = modifiers.Concat(method.Modifiers.AsEnumerable());
+                builder.BuildMethod(method.Identifier.ToFullString(),
+                    method.ParameterList.Parameters.Select(x => x.ToFullString()).ToArray(),
+                    $"{{ {returnStatement}_proxyHandle.{methodName}{args};\n }}", returnType,
+                    modifiers.ToArray());
+            }
+        }
 
-    private MethodDeclarationSyntax[] GenerateMethods(
-        TypeDeclarationSyntax typeDecl,
-        SyntaxToken proxyHandle,
-        ClassDeclarationSyntax proxyClass)
-        => typeDecl.Members
-            .OfType<MethodDeclarationSyntax>()
-            .Select(method => GenerateMethod(proxyHandle, method))
-            .ToArray();
-
-    private static ConstructorDeclarationSyntax GenerateConstructor(
-        SyntaxToken typeDecl,
-        SyntaxToken proxyClassIdentifier,
-        out FieldDeclarationSyntax proxyField)
+    private static void GenerateConstructor(
+        ClassSyntaxBuilder builder,
+        SyntaxToken typeDecl)
     {
-        var @params = SyntaxFactory.ParseParameterList(
-                $"({typeDecl.NormalizeWhitespace().ToFullString()} proxyHandle)");
-        var proxyHandleIdentifier = $"_{typeDecl.Text.Camelize()}";
-        var proxyHandleField = SyntaxFactory.FieldDeclaration(SyntaxFactory.VariableDeclaration(
-            SyntaxFactory.ParseTypeName(typeDecl.Text),
-            SyntaxFactory.SeparatedList<VariableDeclaratorSyntax>()
-                .Add(SyntaxFactory.VariableDeclarator(proxyHandleIdentifier))
-            ));
-        proxyField = proxyHandleField;
-        return SyntaxFactory.ConstructorDeclaration(proxyClassIdentifier)
-            .WithModifiers(SyntaxFactory.TokenList(SyntaxFactory.Token(SyntaxKind.ProtectedKeyword)))
-            .WithBody(SyntaxFactory.Block(SyntaxFactory.ParseStatement($"{proxyHandleIdentifier} = proxyHandle;")))
-            .WithParameterList(@params);
+        var proxyHandleIdentifier = "_proxyHandle";
+        builder.BuildField(typeDecl.Text, proxyHandleIdentifier);
+
+        var @params = new [] {
+            (type: typeDecl.NormalizeWhitespace().ToFullString(), name: "proxyHandle")
+        };
+        var body = SyntaxFactory.Block(SyntaxFactory.ParseStatement($"{proxyHandleIdentifier} = proxyHandle;")).ToFullString();
+        builder.BuildConstructor(@params, body);
     }
-
-
-    private MethodDeclarationSyntax GenerateMethod(
-        SyntaxToken proxyHandle,
-        MethodDeclarationSyntax methodDecl)
-            => SyntaxReceiverHelper.CreateProxy(
-                proxyHandle, methodDecl.AddModifiers(
-                    SyntaxFactory.Token(SyntaxKind.PublicKeyword),
-                    SyntaxFactory.Token(SyntaxKind.VirtualKeyword)));
 }

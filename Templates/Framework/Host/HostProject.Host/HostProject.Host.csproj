@@ -3,6 +3,7 @@
   <PropertyGroup>
     <DefaultDocumentationLogLevel>Off</DefaultDocumentationLogLevel>
     <UserSecretsId>f370f9fb-61d9-4c79-89ab-d8be60825356</UserSecretsId>
+    <ContainerImageName>HostProject</ContainerImageName>
   </PropertyGroup>
 
   <ItemGroup>
@@ -12,10 +13,14 @@
     <PackageReference Include="Microsoft.Extensions.Localization" Version="*" />
     <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks" Version="*" />
     <PackageReference Include="Microsoft.Identity.Client" Version="*" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="*" />
+    <PackageReference Include="Microsoft.NET.Build.Containers" Version="*" />
+    <PackageReference Include="Azure.Bicep.MSBuild" Version="*" />
     <ProjectReference Include="../HostProject.Application/HostProject.Application.csproj" />
     <Using Include="HostProject.Serialization" />
     <Using Include="HostProject.Abstractions" />
     <Using Include="HostProject.Application" />
+    <Bicep Include="**\*.bicep" />
   </ItemGroup>
 
 </Project>

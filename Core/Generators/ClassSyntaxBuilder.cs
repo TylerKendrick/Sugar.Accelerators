@@ -1,3 +1,5 @@
+using CommunityToolkit.Diagnostics;
+
 namespace Sugar.Core.Generators;
 
 /// <summary>
@@ -7,6 +9,8 @@ public class ClassSyntaxBuilder
 {
     private readonly string className;
     private readonly SyntaxKind[] modifiers;
+    private string _inheritedType = typeof(object).FullName;
+    private readonly List<string> _interfaces = new();
     private readonly List<PropertyDeclarationSyntax> properties = new();
     private readonly List<FieldDeclarationSyntax> fields = new();
     private readonly List<MethodDeclarationSyntax> methods = new();
@@ -23,6 +27,22 @@ public class ClassSyntaxBuilder
         this.modifiers = modifiers;
         constructor = CreateConstructor();
     }
+
+    public ClassSyntaxBuilder BuildInheritance(string typeName)
+    {
+        Guard.IsNotNullOrWhiteSpace(typeName);
+        _inheritedType = typeName;
+        return this;
+    }
+
+    public ClassSyntaxBuilder BuildInterface(string typeName)
+    {
+        Guard.IsNotNullOrWhiteSpace(typeName);
+        _interfaces.Add(typeName);
+        return this;
+    }
+    public ClassSyntaxBuilder BuildInterfaces(params string[] typeNames)
+        => typeNames.Aggregate(this, (agg, type) => agg.BuildInterface(type));
 
     /// <summary>
     /// Adds a property to the class being built.
@@ -119,27 +139,28 @@ public class ClassSyntaxBuilder
         return this;
     }
 
-
     private ConstructorDeclarationSyntax CreateConstructor(
-        string[]? parameters = null,
-        string body = "{}",
+        IEnumerable<(string type, string name)>? parameters = null,
+        string? body = null,
         params SyntaxKind[] modifiers)
     {
-        modifiers = modifiers ?? new[]{SyntaxKind.PrivateKeyword};
-        var tokens = modifiers.Select(SyntaxFactory.Token).ToArray();
-        parameters = parameters ?? new string[0];
+        parameters = parameters ?? new (string type, string name)[0];
+        modifiers ??= new[]{SyntaxKind.PrivateKeyword};
+        body ??=  "{}";
+        
         var parameterList = SyntaxFactory.ParameterList(
             SyntaxFactory.SeparatedList(parameters.Select(param =>
                 SyntaxFactory.Parameter(
                     default(SyntaxList<AttributeListSyntax>),
                     SyntaxFactory.TokenList(),
-                    SyntaxFactory.ParseTypeName(param.Split(' ')[0]),
-                    SyntaxFactory.Identifier(param.Split(' ')[1]),
+                    SyntaxFactory.ParseTypeName(param.type),
+                    SyntaxFactory.Identifier(param.name),
                     null
                 )
             ))
         );
 
+        var tokens = modifiers.Select(SyntaxFactory.Token).ToArray();
         return SyntaxFactory.ConstructorDeclaration(className)
             .AddModifiers(tokens)
             .WithParameterList(parameterList)
@@ -154,10 +175,12 @@ public class ClassSyntaxBuilder
     /// <param name="modifiers">The modifiers to apply to the constructor.</param>
     /// <returns>The current <see cref="ClassSyntaxBuilder"/> instance.</returns>
     public ClassSyntaxBuilder BuildConstructor(
-        string[] parameters,
-        string body,
+        IEnumerable<(string type, string name)>? parameters = null,
+        string? body = null,
         params SyntaxKind[] modifiers)
     {
+        parameters ??= new(string type, string name)[0];
+        body ??= "{}";
         constructor = CreateConstructor(parameters, body, modifiers);
         return this;
     }
@@ -167,11 +190,28 @@ public class ClassSyntaxBuilder
     /// </summary>
     /// <returns>The <see cref="ClassDeclarationSyntax"/> object that was built.</returns>
     public ClassDeclarationSyntax Build()
-        => SyntaxFactory.ClassDeclaration(className)
+    {
+        var classDeclaration = SyntaxFactory.ClassDeclaration(className)
+            .AddBaseListTypes(SyntaxReceiverHelper.ConvertType(_inheritedType))
             .AddModifiers(SyntaxFactory.Token(SyntaxKind.PublicKeyword))
+            .AddMembers(fields.ToArray())
             .AddMembers(properties.ToArray())
             .AddMembers(constructor)
             .AddMembers(methods.ToArray());
+
+        Console.WriteLine($"INTERFACES: {_interfaces.Any()}");
+        if(_interfaces.Any())
+        {
+            foreach(var i in _interfaces)
+            {
+                Console.WriteLine($"INTERFACE: {i is null}");
+                Console.WriteLine($"INTERFACE: {i}");
+            }
+            classDeclaration = classDeclaration
+                .AddBaseListTypes(SyntaxReceiverHelper.ConvertType(_interfaces.ToArray()));
+        }
+        return classDeclaration;
+    }
 
     internal void BuildMethod(MethodDeclarationSyntax method)
         => BuildMethod(method.Identifier.ToFullString(),

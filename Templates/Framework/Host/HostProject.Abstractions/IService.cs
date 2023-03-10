@@ -1,6 +1,4 @@
-﻿namespace HostProject.Abstractions;
-
-/// <summary>
+﻿/// <summary>
 /// Defines a service that provides access to person information.
 /// </summary>
 public interface IService
@@ -8,6 +6,7 @@ public interface IService
     /// <summary>
     /// Gets information for a person with the specified name.
     /// </summary>
+    /// <param name="service">The instance of the service.</param>
     /// <param name="name">The name of the person to retrieve information for.</param>
     /// <returns>
     ///     A <see cref="Task{TResult}"/> representing the asynchronous operation,

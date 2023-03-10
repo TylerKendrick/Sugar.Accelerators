@@ -1,6 +1,7 @@
-**/HostProject.Application/**
-**/HostProject.Abstractions/**
-**/HostProject.Serialization/**
-**/ApplicationProject.Abstractions/**
-**/ApplicationProject.Serialization/**
-**/AbstractionsProject.Serialization/**
+Host/HostProject.Application/
+Host/HostProject.Abstractions/
+Host/HostProject.Serialization/
+Application/ApplicationProject.Abstractions/
+Application/ApplicationProject.Serialization/
+Abstractions/AbstractionsProject.Serialization/
+**/*.parameters.json

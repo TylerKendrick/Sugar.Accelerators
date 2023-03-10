@@ -12,7 +12,7 @@
 
   <!-- The following libraries include the source generator interfaces and types we need -->
   <ItemGroup>
-    <PackageReference Include="Sugar.Core.Generators" Version="1.0.3-*" />
+    <PackageReference Include="Sugar.Core.Generators" Version="1.0.4-beta-g8f203c2d1a" />
     <PackageReference Include="Humanizer.Core" Version="*" />
     <Using Include="Humanizer" />
     <Using Include="Sugar.Core.Generators" />

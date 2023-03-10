@@ -9,6 +9,8 @@
     <ItemGroup>
         <PackageReference Include="Microsoft.CodeAnalysis.CSharp" 
             Version="*" />
+        <PackageReference Include="CommunityToolkit.Diagnostics" 
+            Version="*" />
         <Using Include="System" />
         <Using Include="System.Linq" />
         <Using Include="Microsoft.CodeAnalysis" />

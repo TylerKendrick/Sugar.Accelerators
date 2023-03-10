@@ -1,6 +1,3 @@
 <Project Sdk="Sugar.Accelerators.Sdks.Grpc">
-  <PropertyGroup>
-    <DefaultDocumentationLogLevel>Off</DefaultDocumentationLogLevel>
-  </PropertyGroup>
 
 </Project>

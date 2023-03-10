@@ -65,4 +65,12 @@ public static class SyntaxReceiverHelper
         var expression = SyntaxFactory.ArrowExpressionClause(methodInvocation);
         return other.WithExpressionBody(expression);
     }
+
+    public static BaseTypeSyntax ConvertType(string type)
+    {
+        var typeSyntax = SyntaxFactory.ParseTypeName(type);
+        return SyntaxFactory.SimpleBaseType(typeSyntax);
+    }
+    public static BaseTypeSyntax[] ConvertType(params string[] types)
+        => types.Select(ConvertType).ToArray();
 }

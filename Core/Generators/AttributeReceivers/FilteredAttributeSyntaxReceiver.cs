@@ -5,21 +5,21 @@
 /// <typeparam name="TTypeFilter">The type filter to apply.</typeparam>
 public class FilteredAttributeSyntaxReceiver<TAttribute, TTypeFilter> : AttributeSyntaxReceiver<TAttribute>
     where TAttribute : Attribute
-    where TTypeFilter : CSharpSyntaxNode
+    where TTypeFilter : MemberDeclarationSyntax
 {
     /// <summary>
     /// Overrides the Filter method to check if the member declaration is of the specified type filter.
     /// </summary>
     /// <param name="memberDeclaration">The member declaration syntax node.</param>
     /// <returns>A boolean value indicating whether the member declaration is of the specified type filter.</returns>
-    protected sealed override bool Filter(CSharpSyntaxNode memberDeclaration)
+    protected sealed override bool Filter(MemberDeclarationSyntax memberDeclaration)
     {
         if(memberDeclaration is TTypeFilter typeDeclaration)
         {
             OnFilter(typeDeclaration);
-            return true;
+            return false;
         }
-        return false;
+        return true;
     }
 
     /// <summary>
