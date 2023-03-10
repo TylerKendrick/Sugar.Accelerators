@@ -1,66 +1,62 @@
-param location string = 'eastus'
-param clusterName string = 'myAKSCluster'
-param dnsPrefix string = 'myAKSDnsPrefix'
-param subnetId string
-param imageName string
-@secure()
-param clientId string
-@secure()
-param clientSecret string
+@description('The name of the Managed Cluster resource.')
+param clusterName string = 'aks_cluster'
 
+@description('The location of the Managed Cluster resource.')
+param location string = resourceGroup().location
 
-resource aci 'Microsoft.ContainerInstance/containerGroups@2021-03-01' = {
-  name: '${clusterName}-aci'
+@description('Optional DNS prefix to use with hosted Kubernetes API server FQDN.')
+param dnsPrefix string
+
+@description('Disk size (in GB) to provision for each of the agent pool nodes. This value ranges from 0 to 1023. Specifying 0 will apply the default disk size for that agentVMSize.')
+@minValue(0)
+@maxValue(1023)
+param osDiskSizeGB int = 0
+
+@description('The number of nodes for the cluster.')
+@minValue(1)
+@maxValue(50)
+param agentCount int = 3
+
+@description('The size of the Virtual Machine.')
+param agentVMSize string = 'standard_d2s_v3'
+
+@secure()
+@description('User name for the Linux Virtual Machines.')
+param linuxAdminUsername string
+
+@secure()
+@description('Configure all linux machines with the SSH RSA public key string. Your key should include three parts, for example \'ssh-rsa AAAAB...snip...UcyupgH azureuser@linuxvm\'')
+param sshRSAPublicKey string
+
+resource aks 'Microsoft.ContainerService/managedClusters@2022-05-02-preview' = {
+  name: clusterName
   location: location
-  properties: {
-    containers: [
-      {
-        name: '${clusterName}-container'
-        properties: {
-          image: imageName
-          resources: {
-            requests: {
-              cpu: 1
-              memoryInGB: 1
-            }
-          }
-        }
-      }
-    ]
-    osType: 'Linux'
-    ipAddress: {
-      type: 'Private'
-      ports: [{port: 8080, protocol: 'https'}]
-    }
+  identity: {
+    type: 'SystemAssigned'
   }
-}
-
-resource aksCluster 'Microsoft.ContainerService/managedClusters@2022-11-01' = {
-  name: '${clusterName}-aks'
-  location: location
   properties: {
     dnsPrefix: dnsPrefix
-    kubernetesVersion: '1.19.11'
-    networkProfile: {
-      networkPlugin: 'azure'
-      serviceCidr: '172.20.0.0/16'
-      dnsServiceIP: '172.20.0.10'
-      dockerBridgeCidr: '172.17.0.1/16'
-      loadBalancerSku: 'standard'
-    }
     agentPoolProfiles: [
       {
-        name: 'default'
-        count: 3
-        vmSize: 'Standard_D2s_v3'
+        name: 'agentpool'
+        osDiskSizeGB: osDiskSizeGB
+        count: agentCount
+        vmSize: agentVMSize
         osType: 'Linux'
-        vnetSubnetID: subnetId
-        maxPods: 110
+        mode: 'System'
       }
     ]
-    servicePrincipalProfile: {
-      clientId: clientId
-      secret: clientSecret
+    linuxProfile: {
+      adminUsername: linuxAdminUsername
+      ssh: {
+        publicKeys: [
+          {
+            keyData: sshRSAPublicKey
+          }
+        ]
+      }
     }
   }
 }
+
+output controlPlaneFQDN string = aks.properties.fqdn
