@@ -22,7 +22,7 @@
     <Using Include="HostProject.Application" />
     <Bicep Include="**\*.bicep" />
   </ItemGroup>
-  <ItemGroup Label="Bicep Configs" Condition="$(TargetPlatform)=='x64' OR $(TargetPlatform)=='anycpu'">
+  <ItemGroup Label="Bicep Configs">
     <PackageReference Include="Azure.Bicep.CommandLine.win-x64" Version="*"
       Condition="$([MSBuild]::IsOSPlatform('Windows'))"/>
     <PackageReference Include="Azure.Bicep.CommandLine.linux-x64" Version="*"
