@@ -1,0 +1,13 @@
+{
+    "$schema": "http://json.schemastore.org/template",
+    "author": "Tyler Kendrick",
+    "classifications": [ "Common", "Workload", "MSBuild" ],
+    "identity": "Sugar.Accelerators.Templates.Workload",
+    "name": "Sugar Templates: Custom Workload projects",
+    "shortName": "sugar-workload",
+    "sourceName": "WorkloadProject",
+    "tags": {
+      "language": "C#",
+      "type": "project"
+    }
+  }

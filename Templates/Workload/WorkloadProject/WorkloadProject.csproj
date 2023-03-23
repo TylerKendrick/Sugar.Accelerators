@@ -1,0 +1,6 @@
+<Project Sdk="Sugar.Accelerators.Sdks.Common">
+    <PropertyGroup>
+        <PackageType>Template</PackageType>
+		<NoPackageAnalysis>true</NoPackageAnalysis>
+    </PropertyGroup>
+</Project>
