@@ -1,0 +1,16 @@
+{
+    "version": 1,
+    "workloads": {
+      "WorkloadProject": {
+        "description": "Your workload description",
+        "packs": [
+          {
+            "id": "WorkloadProject.Manifest",
+            "version": "1.0.0",
+            "kind": "sdk"
+          }
+        ]
+      }
+    }
+  }
+  

@@ -1,0 +1,5 @@
+<Project>
+  <Target Name="CustomWorkloadTarget" BeforeTargets="Build">
+    <Message Importance="high" Text="Hello from custom workload target!" />
+  </Target>
+</Project>

@@ -1,6 +1,16 @@
 <Project Sdk="Sugar.Accelerators.Sdks.Common">
     <PropertyGroup>
-        <PackageType>framework</PackageType>
+        <PackageType>DotnetPlatform</PackageType>
 		<NoPackageAnalysis>true</NoPackageAnalysis>
     </PropertyGroup>
+  <ItemGroup>
+    <None Include="data\WorkloadManifest.json">
+      <Pack>true</Pack>
+      <PackagePath>data\</PackagePath>
+    </None>
+    <None Include="data\WorkloadManifest.targets">
+      <Pack>true</Pack>
+      <PackagePath>data\</PackagePath>
+    </None>
+  </ItemGroup>
 </Project>
