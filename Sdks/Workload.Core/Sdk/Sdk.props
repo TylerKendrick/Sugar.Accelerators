@@ -1,0 +1,23 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <Import Project="Sdk.props" Sdk="Sugar.Accelerators.Sdks.Common" Condition="'$(ProjectCapabilitiesSugarCore)' == 'true'" />
+  <Import Project="Sdk.props" Sdk="Microsoft.Build.NoTargets" />
+
+  <PropertyGroup>
+    <PackageId>$(PackageId).Manifest</PackageId>
+    <PackageType>DotnetPlatform</PackageType>
+    <NoPackageAnalysis>true</NoPackageAnalysis>
+    <UseSugar>true</UseSugar>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="WorkloadManifest.json"
+      Pack="true" PackagePath="data" />
+    <None Update="WorkloadManifest.targets"
+      Condition="Exists('WorkloadManifest.targets')"
+      CopyToOutputDirectory="PreserveNewest"
+      Pack="true" PackagePath="data" />
+    <ProjectCapability Condition=" '$(UseSugar)' == 'true' " Include="SugarCore" />
+  </ItemGroup>
+
+</Project>

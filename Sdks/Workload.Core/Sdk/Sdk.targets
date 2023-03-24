@@ -1,0 +1,11 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <Import Project="Sdk.targets" Sdk="Sugar.Accelerators.Sdks.Common" Condition="'$(UseSugar)' == 'true'" />
+
+  <Target Name="_CopyManifest" AfterTargets="Build">
+    <ItemGroup>
+      <_Files Include="$(OutputPath)WorkloadManifest.*" />
+    </ItemGroup>
+    <Copy SourceFiles="@(_Files)" DestinationFolder="$(DotNetSdkManifestsDirectory)$(MSBuildProjectName.ToLowerInvariant())" />
+  </Target>
+</Project>
